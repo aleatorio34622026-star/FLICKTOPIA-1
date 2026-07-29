@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FLICKTOPIA — Seu paraíso de filmes e séries</title>
+
+    <!-- Google Fonts (tipografia moderna) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
+
+    <!-- Font Awesome (ícones) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+    <style>
+        /* ---------- RESET & BASE ---------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0b0d15;
+            color: #f0f4ff;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ---------- SCROLLBAR FUTURISTA ---------- */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #141824;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #7b3ff5, #c084fc);
+            border-radius: 20px;
+        }
+
+        /* ---------- HEADER / NAVBAR ---------- */
+        header {
+            background: rgba(11, 13, 21, 0.8);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            padding: 16px 0;
+            transition: background 0.3s;
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .logo {
+            font-size: 1.9rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #c084fc, #7b3ff5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo i {
+            font-size: 2rem;
+            background: linear-gradient(135deg, #c084fc, #7b3ff5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a {
+            color: #b0b8d1;
+            transition: color 0.3s, transform 0.2s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -4px;
+            width: 0%;
+            height: 2px;
+            background: linear-gradient(90deg, #c084fc, #7b3ff5);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #fff;
+            transform: translateY(-1px);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .btn-glow {
+            background: linear-gradient(135deg, #7b3ff5, #a855f7);
+            padding: 10px 24px;
+            border-radius: 40px;
+            font-weight: 700;
+            color: #fff !important;
+            box-shadow: 0 0 20px rgba(123, 63, 245, 0.3);
+            transition: box-shadow 0.3s, transform 0.2s;
+            border: none;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .btn-glow:hover {
+            box-shadow: 0 0 40px rgba(123, 63, 245, 0.6);
+            transform: scale(1.03);
+            color: #fff !important;
+        }
+
+        .btn-glow i {
+            margin-right: 8px;
+        }
+
+        /* ---------- HERO ---------- */
+        .hero {
+            padding: 80px 0 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -30%;
+            left: -10%;
+            width: 120%;
+            height: 140%;
+            background: radial-gradient(circle at 30% 40%, rgba(123, 63, 245, 0.08), transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero h1 {
+            font-size: 3.8rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            line-height: 1.2;
+            position: relative;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, #c084fc, #7b3ff5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: #b0b8d1;
+            max-width: 640px;
+            margin: 20px auto 32px;
+            position: relative;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            position: relative;
+        }
+
+        .hero-buttons .btn-glow {
+            padding: 14px 40px;
+            font-size: 1.05rem;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1.5px solid rgba(255, 255, 255, 0.15);
+            padding: 14px 40px;
+            border-radius: 40px;
+            font-weight: 700;
+            color: #f0f4ff;
+            transition: border-color 0.3s, background 0.3s;
+            cursor: pointer;
+            font-size: 1.05rem;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .btn-outline:hover {
+            border-color: #7b3ff5;
+            background: rgba(123, 63, 245, 0.08);
+        }
+
+        /* ---------- SEÇÃO CATEGORIAS ---------- */
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .section-sub {
+            color: #b0b8d1;
+            margin-bottom: 40px;
+            font-size: 1.05rem;
+        }
+
+        .categorias-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 20px;
+            margin-bottom: 60px;
+        }
+
+        .cat-card {
+            background: #141824;
+            border-radius: 20px;
+            padding: 28px 16px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            transition: transform 0.3s, background 0.3s, box-shadow 0.3s;
+            cursor: default;
+        }
+
+        .cat-card:hover {
+            transform: translateY(-8px);
+            background: #1c212e;
+            box-shadow: 0 12px 40px rgba(123, 63, 245, 0.15);
+        }
+
+        .cat-card i {
+            font-size: 2.8rem;
+            color: #c084fc;
+            margin-bottom: 12px;
+        }
+
+        .cat-card h3 {
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .cat-card p {
+            font-size: 0.85rem;
+            color: #8892b0;
+            margin-top: 4px;
+        }
+
+        /* ---------- CARDS DE FILMES/SÉRIES ---------- */
+        .movies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 28px;
+            margin-bottom: 60px;
+        }
+
+        .movie-card {
+            background: #141824;
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .movie-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(123, 63, 245, 0.2);
+        }
+
+        .movie-card img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            background: #1c212e;
+        }
+
+        .movie-info {
+            padding: 18px 18px 22px;
+        }
+
+        .movie-info h3 {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 4px;
+        }
+
+        .movie-info .meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #8892b0;
+            font-size: 0.85rem;
+        }
+
+        .movie-info .meta .tag {
+            background: rgba(123, 63, 245, 0.2);
+            padding: 2px 12px;
+            border-radius: 40px;
+            color: #c084fc;
+            font-weight: 600;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .rating {
+            color: #fbbf24;
+            font-weight: 700;
+        }
+
+        /* ---------- NEWSLETTER ---------- */
+        .newsletter {
+            background: linear-gradient(135deg, #141824, #1c212e);
+            border-radius: 32px;
+            padding: 60px 40px;
+            text-align: center;
+            margin: 40px 0 60px;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .newsletter h2 {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .newsletter p {
+            color: #b0b8d1;
+            max-width: 500px;
+            margin: 8px auto 28px;
+        }
+
+        .newsletter form {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            max-width: 520px;
+            margin: 0 auto;
+        }
+
+        .newsletter input {
+            flex: 1;
+            min-width: 220px;
+            padding: 14px 24px;
+            border-radius: 60px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: #0b0d15;
+            color: #f0f4ff;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .newsletter input:focus {
+            border-color: #7b3ff5;
+        }
+
+        .newsletter .btn-glow {
+            padding: 14px 40px;
+            font-size: 1rem;
+        }
+
+        /* ---------- FOOTER ---------- */
+        footer {
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+            padding: 40px 0 30px;
+            margin-top: 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 32px;
+            margin-bottom: 32px;
+        }
+
+        .footer-grid h4 {
+            font-weight: 700;
+            margin-bottom: 12px;
+            font-size: 1rem;
+        }
+
+        .footer-grid a {
+            color: #8892b0;
+            display: block;
+            margin-bottom: 6px;
+            transition: color 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .footer-grid a:hover {
+            color: #f0f4ff;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            color: #8892b0;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+            padding-top: 24px;
+        }
+
+        .footer-bottom i {
+            color: #c084fc;
+        }
+
+        /* ---------- RESPONSIVO ---------- */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .navbar {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .nav-links {
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 16px;
+            }
+
+            .logo {
+                justify-content: center;
+                font-size: 1.7rem;
+            }
+
+            .hero-buttons .btn-glow,
+            .hero-buttons .btn-outline {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .newsletter {
+                padding: 40px 20px;
+            }
+
+            .newsletter h2 {
+                font-size: 1.6rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .categorias-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .movies-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ========== HEADER ========== -->
+    <header>
+        <div class="container navbar">
+            <div class="logo">
+                <i class="fas fa-film"></i> FLICKTOPIA
+            </div>
+            <ul class="nav-links">
+                <li><a href="#">Início</a></li>
+                <li><a href="#">Filmes</a></li>
+                <li><a href="#">Séries</a></li>
+                <li><a href="#">Lançamentos</a></li>
+                <li><a href="#">Minha Lista</a></li>
+            </ul>
+            <button class="btn-glow" id="btnEntrar">
+                <i class="fas fa-user-astronaut"></i> Entrar
+            </button>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- ========== HERO ========== -->
+        <section class="hero container">
+            <h1>Bem-vindo ao <span>FLICKTOPIA</span></h1>
+            <p>
+                O paraíso dos cinéfilos e maratonistas. Descubra os melhores filmes,
+                séries e tendências do streaming — tudo em um só lugar.
+            </p>
+            <div class="hero-buttons">
+                <button class="btn-glow" id="btnExplorar">
+                    <i class="fas fa-rocket"></i> Explorar agora
+                </button>
+                <button class="btn-outline" id="btnTrailer">
+                    <i class="fas fa-play"></i> Ver trailer
+                </button>
+            </div>
+        </section>
+
+        <!-- ========== CATEGORIAS ========== -->
+        <section class="container">
+            <h2 class="section-title">Categorias</h2>
+            <p class="section-sub">Navegue pelo universo do entretenimento</p>
+
+            <div class="categorias-grid">
+                <div class="cat-card">
+                    <i class="fas fa-fire"></i>
+                    <h3>Lançamentos</h3>
+                    <p>2026 em alta</p>
+                </div>
+                <div class="cat-card">
+                    <i class="fas fa-star"></i>
+                    <h3>Populares</h3>
+                    <p>O que todo mundo vê</p>
+                </div>
+                <div class="cat-card">
+                    <i class="fas fa-tv"></i>
+                    <h3>Séries</h3>
+                    <p>Maratone agora</p>
+                </div>
+                <div class="cat-card">
+                    <i class="fas fa-theater-masks"></i>
+                    <h3>Drama</h3>
+                    <p>Emoção pura</p>
+                </div>
+                <div class="cat-card">
+                    <i class="fas fa-robot"></i>
+                    <h3>Ficção</h3>
+                    <p>Mundos incríveis</p>
+                </div>
+                <div class="cat-card">
+                    <i class="fas fa-skull"></i>
+                    <h3>Terror</h3>
+                    <p>Arrepie-se</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== EM DESTAQUE ========== -->
+        <section class="container">
+            <h2 class="section-title">⭐ Em Destaque</h2>
+            <p class="section-sub">Os títulos mais comentados do momento</p>
+
+            <div class="movies-grid" id="moviesGrid">
+                <!-- Os cards serão injetados pelo JavaScript -->
+            </div>
+        </section>
+
+        <!-- ========== NEWSLETTER ========== -->
+        <section class="container">
+            <div class="newsletter">
+                <h2>📬 Fique por dentro</h2>
+                <p>Receba recomendações exclusivas e novidades do FLICKTOPIA direto no seu e-mail.</p>
+                <form id="formNewsletter">
+                    <input type="email" placeholder="Seu melhor e-mail" required />
+                    <button type="submit" class="btn-glow">
+                        <i class="fas fa-paper-plane"></i> Inscrever
+                    </button>
+                </form>
+                <div id="msgNewsletter" style="margin-top:16px; font-weight:600; min-height:28px;"></div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ========== FOOTER ========== -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h4>FLICKTOPIA</h4>
+                    <a href="#">Sobre nós</a>
+                    <a href="#">Contato</a>
+                    <a href="#">Imprensa</a>
+                </div>
+                <div>
+                    <h4>Conteúdo</h4>
+                    <a href="#">Filmes</a>
+                    <a href="#">Séries</a>
+                    <a href="#">Documentários</a>
+                </div>
+                <div>
+                    <h4>Suporte</h4>
+                    <a href="#">FAQ</a>
+                    <a href="#">Privacidade</a>
+                    <a href="#">Termos</a>
+                </div>
+                <div>
+                    <h4>Redes</h4>
+                    <a href="#"><i class="fab fa-instagram"></i> Instagram</a>
+                    <a href="#"><i class="fab fa-twitter"></i> Twitter</a>
+                    <a href="#"><i class="fab fa-youtube"></i> YouTube</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <i class="fas fa-film"></i> FLICKTOPIA &bull; 2026 &bull; Feito com pipoca e café ☕
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========== JAVASCRIPT ========== -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            // --------------------------------------------------------------
+            // 1. BASE DE DADOS (filmes e séries)
+            // --------------------------------------------------------------
+            const conteudo = [{
+                titulo: 'Interestelar',
+                ano: 2014,
+                tipo: 'Filme',
+                nota: 4.8,
+                imagem: 'https://image.tmdb.org/t/p/w500/gEU2QniE6E77NI6lCU6M1nbklxV.jpg',
+                tag: 'Ficção'
+            }, {
+                titulo: 'The Last of Us',
+                ano: 2023,
+                tipo: 'Série',
+                nota: 4.7,
+                imagem: 'https://image.tmdb.org/t/p/w500/uKvVjHN5kLqZ3s4zGk5kKZ5s5lL.jpg',
+                tag: 'Drama'
+            }, {
+                titulo: 'Duna: Parte 2',
+                ano: 2024,
+                tipo: 'Filme',
+                nota: 4.9,
+                imagem: 'https://image.tmdb.org/t/p/w500/xOMo8BRKQYwR8jxK3a9KpD5k2z1.jpg',
+                tag: 'Ficção'
+            }, {
+                titulo: 'Stranger Things',
+                ano: 2022,
+                tipo: 'Série',
+                nota: 4.6,
+                imagem: 'https://image.tmdb.org/t/p/w500/x2LSRK2Cm7M53jl3O2kLt6bD6cM.jpg',
+                tag: 'Terror'
+            }, {
+                titulo: 'Oppenheimer',
+                ano: 2023,
+                tipo: 'Filme',
+                nota: 4.7,
+                imagem: 'https://image.tmdb.org/t/p/w500/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg',
+                tag: 'Drama'
+            }, {
+                titulo: 'House of the Dragon',
+                ano: 2024,
+                tipo: 'Série',
+                nota: 4.5,
+                imagem: 'https://image.tmdb.org/t/p/w500/zXZv0wGx5bUu5Xh1tL2yFj3zKdO.jpg',
+                tag: 'Fantasia'
+            }];
+
+            // --------------------------------------------------------------
+            // 2. RENDERIZAR CARDS
+            // --------------------------------------------------------------
+            const grid = document.getElementById('moviesGrid');
+
+            function renderizarCards(lista) {
+                grid.innerHTML = '';
+                lista.forEach(item => {
+                    const card = document.createElement('div');
+                    card.className = 'movie-card';
+
+                    card.innerHTML = `
+                            <img src="${item.imagem}" alt="${item.titulo}" loading="lazy" />
+                            <div class="movie-info">
+                                <h3>${item.titulo}</h3>
+                                <div class="meta">
+                                    <span>${item.ano} • ${item.tipo}</span>
+                                    <span class="rating"><i class="fas fa-star"></i> ${item.nota}</span>
+                                </div>
+                                <div style="margin-top:10px; display:flex; gap:6px;">
+                                    <span class="tag">${item.tag}</span>
+                                </div>
+                            </div>
+                        `;
+
+                    // Clique no card mostra um alerta com mais info
+                    card.addEventListener('click', function() {
+                        alert(`🎬 ${item.titulo} (${item.ano})\nTipo: ${item.tipo}\nNota: ${item.nota}\nTag: ${item.tag}`);
+                    });
+
+                    grid.appendChild(card);
+                });
+            }
+
+            renderizarCards(conteudo);
+
+            // --------------------------------------------------------------
+            // 3. BOTÃO "EXPLORAR AGORA"
+            // --------------------------------------------------------------
+            document.getElementById('btnExplorar').addEventListener('click', function() {
+                const destaque = document.querySelector('.movies-grid');
+                if (destaque) {
+                    destaque.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+
+            // --------------------------------------------------------------
+            // 4. BOTÃO "VER TRAILER"
+            // --------------------------------------------------------------
+            document.getElementById('btnTrailer').addEventListener('click', function() {
+                alert('🎥 Em breve: trailer dos destaques em primeira mão!');
+            });
+
+            // --------------------------------------------------------------
+            // 5. BOTÃO "ENTRAR"
+            // --------------------------------------------------------------
+            document.getElementById('btnEntrar').addEventListener('click', function() {
+                const nome = prompt('👋 Digite seu nome para acessar o FLICKTOPIA:');
+                if (nome && nome.trim() !== '') {
+                    alert(`🚀 Bem-vindo(a) ${nome.trim()}! O paraíso do cinema te espera.`);
+                } else if (nome !== null) {
+                    alert('📛 Nome inválido. Tente novamente.');
+                }
+            });
+
+            // --------------------------------------------------------------
+            // 6. NEWSLETTER
+            // --------------------------------------------------------------
+            const formNews = document.getElementById('formNewsletter');
+            const msgNews = document.getElementById('msgNewsletter');
+
+            formNews.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const email = this.querySelector('input[type="email"]').value.trim();
+
+                if (email && email.includes('@') && email.includes('.')) {
+                    msgNews.innerHTML = '✅ Inscrição confirmada! Você receberá novidades em breve.';
+                    msgNews.style.color = '#c084fc';
+                    this.querySelector('input[type="email"]').value = '';
+                } else {
+                    msgNews.innerHTML = '⚠️ Por favor, insira um e-mail válido.';
+                    msgNews.style.color = '#f87171';
+                }
+
+                // Remove a mensagem após 6 segundos
+                setTimeout(() => {
+                    msgNews.innerHTML = '';
+                }, 6000);
+            });
+
+            // --------------------------------------------------------------
+            // 7. EFEITO: links do menu com scroll suave (âncoras)
+            // --------------------------------------------------------------
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    if (href === '#') {
+                        e.preventDefault();
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }
+                });
+            });
+
+            console.log('🚀 FLICKTOPIA carregado com sucesso!');
+        });
+    </script>
+
+</body>
+</html>
