@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>FLICKTOPIA</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,17 +12,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
 
     <style>
-        /* ============================================================
-           FLICKTOPIA - CSS COMPLETO
-           ============================================================ */
-
-        /* ---------- RESET ---------- */
+        /* ===== TODO O CSS AQUI (igual ao que você já tem) ===== */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
         body {
             font-family: 'Poppins', sans-serif;
             background: #0a0a0f;
@@ -31,24 +25,19 @@
             overflow-x: hidden;
             transition: background 0.3s, color 0.3s;
         }
-
         a {
             text-decoration: none;
             color: inherit;
         }
-
         ul {
             list-style: none;
         }
-
         button {
             cursor: pointer;
             font-family: 'Poppins', sans-serif;
         }
 
-        /* ============================================================
-           LOADER
-           ============================================================ */
+        /* LOADER */
         #loader {
             position: fixed;
             top: 0;
@@ -63,12 +52,10 @@
             z-index: 99999;
             transition: opacity 0.5s, visibility 0.5s;
         }
-
         #loader.hide {
             opacity: 0;
             visibility: hidden;
         }
-
         .spinner {
             width: 60px;
             height: 60px;
@@ -77,13 +64,11 @@
             border-radius: 50%;
             animation: spin 1s linear infinite;
         }
-
         @keyframes spin {
             to {
                 transform: rotate(360deg);
             }
         }
-
         #loader h2 {
             margin-top: 20px;
             font-size: 1.8rem;
@@ -93,9 +78,7 @@
             background-clip: text;
         }
 
-        /* ============================================================
-           HEADER
-           ============================================================ */
+        /* HEADER */
         header {
             display: flex;
             align-items: center;
@@ -110,7 +93,6 @@
             flex-wrap: wrap;
             gap: 12px;
         }
-
         .logo {
             display: flex;
             align-items: center;
@@ -118,25 +100,21 @@
             font-size: 1.6rem;
             font-weight: 800;
         }
-
         .logo i {
             color: #7b3ff5;
             font-size: 1.8rem;
         }
-
         .logo span {
             background: linear-gradient(135deg, #c084fc, #7b3ff5);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-
         nav ul {
             display: flex;
             gap: 28px;
             font-weight: 500;
         }
-
         nav ul a {
             color: #a0a0b8;
             transition: color 0.3s;
@@ -144,7 +122,6 @@
             font-size: 0.95rem;
             cursor: pointer;
         }
-
         nav ul a::after {
             content: '';
             position: absolute;
@@ -155,24 +132,20 @@
             background: linear-gradient(90deg, #7b3ff5, #c084fc);
             transition: width 0.3s;
         }
-
         nav ul a:hover::after,
         nav ul a.active::after {
             width: 100%;
         }
-
         nav ul a:hover,
         nav ul a.active {
             color: #fff;
         }
-
         .header-actions {
             display: flex;
             align-items: center;
             gap: 14px;
             flex-wrap: wrap;
         }
-
         .search-box {
             display: flex;
             align-items: center;
@@ -182,16 +155,13 @@
             border: 1px solid rgba(255, 255, 255, 0.06);
             transition: border-color 0.3s;
         }
-
         .search-box:focus-within {
             border-color: #7b3ff5;
         }
-
         .search-box i {
             color: #6a6a82;
             margin-right: 10px;
         }
-
         .search-box input {
             background: transparent;
             border: none;
@@ -201,11 +171,9 @@
             width: 180px;
             font-family: 'Poppins', sans-serif;
         }
-
         .search-box input::placeholder {
             color: #6a6a82;
         }
-
         #themeToggle {
             background: #1a1a24;
             border: 1px solid rgba(255, 255, 255, 0.06);
@@ -215,12 +183,10 @@
             font-size: 1.1rem;
             transition: all 0.3s;
         }
-
         #themeToggle:hover {
             border-color: #7b3ff5;
             color: #fff;
         }
-
         #loginBtn {
             background: linear-gradient(135deg, #7b3ff5, #c084fc);
             border: none;
@@ -231,19 +197,15 @@
             font-size: 0.9rem;
             transition: transform 0.3s, box-shadow 0.3s;
         }
-
         #loginBtn:hover {
             transform: scale(1.05);
             box-shadow: 0 0 30px rgba(123, 63, 245, 0.3);
         }
-
         #loginBtn i {
             margin-right: 6px;
         }
 
-        /* ============================================================
-           HERO
-           ============================================================ */
+        /* HERO */
         .hero {
             position: relative;
             height: 70vh;
@@ -255,7 +217,6 @@
             background: linear-gradient(135deg, #0a0a0f, #1a1030);
             overflow: hidden;
         }
-
         .hero::before {
             content: '';
             position: absolute;
@@ -266,7 +227,6 @@
             background: radial-gradient(circle at 30% 40%, rgba(123, 63, 245, 0.08), transparent 60%);
             pointer-events: none;
         }
-
         .overlay {
             position: absolute;
             top: 0;
@@ -275,41 +235,35 @@
             height: 100%;
             background: linear-gradient(180deg, transparent, rgba(10, 10, 15, 0.8));
         }
-
         .hero-content {
             position: relative;
             z-index: 2;
             padding: 20px;
         }
-
         .hero-content h1 {
             font-size: 4rem;
             font-weight: 800;
             margin-bottom: 16px;
             letter-spacing: -1px;
         }
-
         .hero-content h1 span {
             background: linear-gradient(135deg, #c084fc, #7b3ff5);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-
         .hero-content p {
             font-size: 1.2rem;
             color: #a0a0b8;
             max-width: 500px;
             margin: 0 auto 30px;
         }
-
         .hero-buttons {
             display: flex;
             gap: 14px;
             justify-content: center;
             flex-wrap: wrap;
         }
-
         .hero-buttons button {
             padding: 12px 32px;
             border-radius: 30px;
@@ -317,37 +271,30 @@
             font-size: 1rem;
             transition: all 0.3s;
         }
-
         #exploreBtn {
             background: linear-gradient(135deg, #7b3ff5, #c084fc);
             border: none;
             color: #fff;
             box-shadow: 0 0 30px rgba(123, 63, 245, 0.3);
         }
-
         #exploreBtn:hover {
             transform: scale(1.05);
             box-shadow: 0 0 50px rgba(123, 63, 245, 0.5);
         }
-
         #trailerBtn {
             background: transparent;
             border: 1.5px solid rgba(255, 255, 255, 0.15);
             color: #fff;
         }
-
         #trailerBtn:hover {
             border-color: #7b3ff5;
             background: rgba(123, 63, 245, 0.1);
         }
-
         #trailerBtn i {
             margin-right: 8px;
         }
 
-        /* ============================================================
-           CATEGORIAS
-           ============================================================ */
+        /* CATEGORIAS */
         .categories {
             display: flex;
             gap: 10px;
@@ -357,11 +304,9 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.03);
             scrollbar-width: none;
         }
-
         .categories::-webkit-scrollbar {
             display: none;
         }
-
         .category {
             padding: 8px 20px;
             border-radius: 30px;
@@ -374,37 +319,30 @@
             transition: all 0.3s;
             font-family: 'Poppins', sans-serif;
         }
-
         .category:hover {
             border-color: #7b3ff5;
             color: #fff;
         }
-
         .category.active {
             background: linear-gradient(135deg, #7b3ff5, #c084fc);
             border-color: transparent;
             color: #fff;
         }
 
-        /* ============================================================
-           FILMES
-           ============================================================ */
+        /* FILMES */
         .movies-section {
             padding: 30px 40px 10px;
         }
-
         .section-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 20px;
         }
-
         .section-header h2 {
             font-size: 1.6rem;
             font-weight: 700;
         }
-
         .section-header button {
             background: transparent;
             border: none;
@@ -413,17 +351,14 @@
             font-size: 0.9rem;
             transition: color 0.3s;
         }
-
         .section-header button:hover {
             color: #c084fc;
         }
-
         .movies-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             gap: 20px;
         }
-
         .movie-card {
             background: #14141e;
             border-radius: 16px;
@@ -433,24 +368,20 @@
             cursor: pointer;
             position: relative;
         }
-
         .movie-card:hover {
             transform: translateY(-8px);
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
             border-color: rgba(123, 63, 245, 0.3);
         }
-
         .movie-card img {
             width: 100%;
             height: 280px;
             object-fit: cover;
             background: #1a1a24;
         }
-
         .movie-card .movie-info {
             padding: 14px 16px 18px;
         }
-
         .movie-card .movie-info h3 {
             font-size: 0.95rem;
             font-weight: 600;
@@ -459,7 +390,6 @@
             overflow: hidden;
             text-overflow: ellipsis;
         }
-
         .movie-card .movie-info .meta {
             display: flex;
             justify-content: space-between;
@@ -467,12 +397,10 @@
             color: #6a6a82;
             font-size: 0.8rem;
         }
-
         .movie-card .movie-info .rating {
             color: #fbbf24;
             font-weight: 600;
         }
-
         .movie-card .favorite-btn {
             position: absolute;
             top: 12px;
@@ -487,15 +415,12 @@
             cursor: pointer;
             transition: all 0.3s;
         }
-
         .movie-card .favorite-btn:hover {
             transform: scale(1.1);
         }
-
         .movie-card .favorite-btn.favorited {
             color: #fbbf24;
         }
-
         .movie-card .watch-btn {
             display: inline-flex;
             align-items: center;
@@ -514,15 +439,12 @@
             text-decoration: none;
             font-family: 'Poppins', sans-serif;
         }
-
         .movie-card .watch-btn:hover {
             transform: scale(1.03);
             box-shadow: 0 0 20px rgba(244, 63, 94, 0.3);
         }
 
-        /* ============================================================
-           MODAL
-           ============================================================ */
+        /* MODAL */
         .modal {
             display: none;
             position: fixed;
@@ -537,11 +459,9 @@
             align-items: center;
             padding: 20px;
         }
-
         .modal.active {
             display: flex;
         }
-
         .modal-content {
             background: #14141e;
             border-radius: 24px;
@@ -553,7 +473,6 @@
             position: relative;
             animation: modalIn 0.3s ease;
         }
-
         @keyframes modalIn {
             from {
                 transform: scale(0.9) translateY(20px);
@@ -564,7 +483,6 @@
                 opacity: 1;
             }
         }
-
         .closeModal {
             position: absolute;
             top: 16px;
@@ -575,51 +493,42 @@
             z-index: 10;
             transition: color 0.3s;
         }
-
         .closeModal:hover {
             color: #fff;
         }
-
         .modal-banner {
             width: 100%;
             height: 250px;
             overflow: hidden;
             border-radius: 24px 24px 0 0;
         }
-
         .modal-banner img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
-
         .modal-info {
             display: flex;
             gap: 24px;
             padding: 24px;
         }
-
         .poster {
             flex-shrink: 0;
             width: 180px;
         }
-
         .poster img {
             width: 100%;
             border-radius: 12px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
-
         .details {
             flex: 1;
         }
-
         .details h1 {
             font-size: 1.8rem;
             font-weight: 700;
             margin-bottom: 6px;
         }
-
         .movie-meta {
             display: flex;
             gap: 16px;
@@ -628,37 +537,31 @@
             margin-bottom: 12px;
             flex-wrap: wrap;
         }
-
         .movie-meta span {
             display: flex;
             align-items: center;
             gap: 4px;
         }
-
         .details p {
             color: #b0b0c8;
             line-height: 1.7;
             font-size: 0.95rem;
             margin-bottom: 16px;
         }
-
         .cast {
             margin-bottom: 16px;
         }
-
         .cast h3 {
             font-size: 0.9rem;
             font-weight: 600;
             margin-bottom: 8px;
             color: #a0a0b8;
         }
-
         #castContainer {
             display: flex;
             gap: 8px;
             flex-wrap: wrap;
         }
-
         #castContainer span {
             background: #1a1a24;
             padding: 4px 12px;
@@ -666,13 +569,11 @@
             font-size: 0.8rem;
             color: #b0b0c8;
         }
-
         .buttons {
             display: flex;
             gap: 10px;
             flex-wrap: wrap;
         }
-
         .buttons button {
             padding: 10px 20px;
             border-radius: 30px;
@@ -682,45 +583,36 @@
             transition: all 0.3s;
             font-family: 'Poppins', sans-serif;
         }
-
         #watchMovie {
             background: linear-gradient(135deg, #f43f5e, #e11d48);
             color: #fff;
         }
-
         #watchMovie:hover {
             transform: scale(1.05);
             box-shadow: 0 0 30px rgba(244, 63, 94, 0.3);
         }
-
         #favoriteMovie {
             background: #1a1a24;
             color: #fff;
             border: 1px solid rgba(255, 255, 255, 0.06);
         }
-
         #favoriteMovie:hover {
             border-color: #7b3ff5;
         }
-
         #favoriteMovie.favorited {
             background: #7b3ff5;
             color: #fff;
         }
-
         #shareMovie {
             background: #1a1a24;
             color: #fff;
             border: 1px solid rgba(255, 255, 255, 0.06);
         }
-
         #shareMovie:hover {
             border-color: #7b3ff5;
         }
 
-        /* ============================================================
-           LOGIN MODAL
-           ============================================================ */
+        /* LOGIN */
         .login-modal {
             display: none;
             position: fixed;
@@ -734,11 +626,9 @@
             justify-content: center;
             align-items: center;
         }
-
         .login-modal.active {
             display: flex;
         }
-
         .login-box {
             background: #14141e;
             border-radius: 24px;
@@ -749,7 +639,6 @@
             position: relative;
             animation: modalIn 0.3s ease;
         }
-
         .closeLogin {
             position: absolute;
             top: 16px;
@@ -759,24 +648,20 @@
             cursor: pointer;
             transition: color 0.3s;
         }
-
         .closeLogin:hover {
             color: #fff;
         }
-
         .login-box h2 {
             font-size: 1.8rem;
             font-weight: 700;
             text-align: center;
             margin-bottom: 24px;
         }
-
         .login-box form {
             display: flex;
             flex-direction: column;
             gap: 14px;
         }
-
         .login-box input {
             background: #1a1a24;
             border: 1px solid rgba(255, 255, 255, 0.06);
@@ -788,15 +673,12 @@
             outline: none;
             transition: border-color 0.3s;
         }
-
         .login-box input:focus {
             border-color: #7b3ff5;
         }
-
         .login-box input::placeholder {
             color: #6a6a82;
         }
-
         .login-box form button {
             background: linear-gradient(135deg, #7b3ff5, #c084fc);
             border: none;
@@ -808,19 +690,16 @@
             transition: all 0.3s;
             font-family: 'Poppins', sans-serif;
         }
-
         .login-box form button:hover {
             transform: scale(1.02);
             box-shadow: 0 0 30px rgba(123, 63, 245, 0.3);
         }
-
         .divider {
             text-align: center;
             color: #6a6a82;
             margin: 16px 0;
             font-size: 0.9rem;
         }
-
         .google-login {
             background: #1a1a24;
             border: 1px solid rgba(255, 255, 255, 0.06);
@@ -833,34 +712,27 @@
             width: 100%;
             font-family: 'Poppins', sans-serif;
         }
-
         .google-login:hover {
             border-color: #7b3ff5;
         }
-
         .google-login i {
             margin-right: 10px;
         }
-
         .login-box p {
             text-align: center;
             color: #6a6a82;
             margin-top: 16px;
             font-size: 0.9rem;
         }
-
         .login-box p a {
             color: #7b3ff5;
             font-weight: 600;
         }
-
         .login-box p a:hover {
             color: #c084fc;
         }
 
-        /* ============================================================
-           TOAST
-           ============================================================ */
+        /* TOAST */
         #toast {
             position: fixed;
             bottom: 30px;
@@ -877,15 +749,12 @@
             opacity: 0;
             transition: all 0.4s ease;
         }
-
         #toast.show {
             transform: translateY(0);
             opacity: 1;
         }
 
-        /* ============================================================
-           BOTÃO TOPO
-           ============================================================ */
+        /* BOTÃO TOPO */
         #backToTop {
             position: fixed;
             bottom: 30px;
@@ -904,25 +773,20 @@
             transition: all 0.3s;
             z-index: 999;
         }
-
         #backToTop.show {
             display: flex;
         }
-
         #backToTop:hover {
             transform: scale(1.1);
         }
 
-        /* ============================================================
-           FOOTER
-           ============================================================ */
+        /* FOOTER */
         footer {
             background: #0a0a0f;
             border-top: 1px solid rgba(255, 255, 255, 0.03);
             padding: 40px 40px 20px;
             margin-top: 20px;
         }
-
         .footer-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -930,7 +794,6 @@
             max-width: 1200px;
             margin: 0 auto;
         }
-
         .footer-container h2 {
             font-size: 1.6rem;
             font-weight: 800;
@@ -939,32 +802,26 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-
         .footer-container p {
             color: #6a6a82;
             font-size: 0.9rem;
         }
-
         .footer-container h3 {
             font-size: 1rem;
             font-weight: 600;
             margin-bottom: 12px;
         }
-
         .footer-container ul li {
             margin-bottom: 6px;
         }
-
         .footer-container ul a {
             color: #6a6a82;
             transition: color 0.3s;
             font-size: 0.9rem;
         }
-
         .footer-container ul a:hover {
             color: #fff;
         }
-
         .copyright {
             text-align: center;
             color: #4a4a5a;
@@ -974,9 +831,7 @@
             margin-top: 20px;
         }
 
-        /* ============================================================
-           RESPONSIVO
-           ============================================================ */
+        /* RESPONSIVO */
         @media (max-width: 1024px) {
             header {
                 padding: 14px 20px;
@@ -988,7 +843,6 @@
                 grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
             }
         }
-
         @media (max-width: 768px) {
             header {
                 flex-direction: column;
@@ -1033,7 +887,6 @@
                 text-align: center;
             }
         }
-
         @media (max-width: 480px) {
             .hero-content h1 {
                 font-size: 1.8rem;
@@ -1068,80 +921,51 @@
 
 <body>
 
-    <!--==========================
-            LOADER
-    ===========================-->
-
+    <!-- ===== LOADER ===== -->
     <div id="loader">
         <div class="spinner"></div>
         <h2>FLICKTOPIA</h2>
     </div>
 
-    <!--==========================
-            HEADER
-    ===========================-->
-
+    <!-- ===== HEADER ===== -->
     <header>
         <div class="logo">
             <i class="fa-solid fa-film"></i>
             <span>FLICKTOPIA</span>
         </div>
-
         <nav>
             <ul>
                 <li><a href="#" class="active" data-filter="all">Início</a></li>
                 <li><a href="#" data-filter="movie">Filmes</a></li>
                 <li><a href="#" data-filter="serie">Séries</a></li>
                 <li><a href="#" data-filter="anime">Animes</a></li>
-                <li><a href="#" id="favoritesNav">Favoritos</a></li>
+                <li><a href="#" id="favoritesNav">❤️ Favoritos</a></li>
             </ul>
         </nav>
-
         <div class="header-actions">
             <div class="search-box">
                 <i class="fa-solid fa-magnifying-glass"></i>
                 <input type="text" id="searchInput" placeholder="Pesquisar Filmes ou Séries">
             </div>
-            <button id="themeToggle">
-                <i class="fa-solid fa-moon"></i>
-            </button>
-            <button id="loginBtn">
-                <i class="fa-solid fa-user"></i>
-                Entrar
-            </button>
+            <button id="themeToggle"><i class="fa-solid fa-moon"></i></button>
+            <button id="loginBtn"><i class="fa-solid fa-user"></i> Entrar</button>
         </div>
     </header>
 
-    <!--==========================
-            HERO
-    ===========================-->
-
+    <!-- ===== HERO ===== -->
     <section class="hero">
         <div class="overlay"></div>
         <div class="hero-content">
-            <h1>
-                Bem-vindo ao
-                <span>FLICKTOPIA</span>
-            </h1>
-            <p>
-                Assista milhares de filmes, séries e animes.
-            </p>
+            <h1>Bem-vindo ao <span>FLICKTOPIA</span></h1>
+            <p>Assista milhares de filmes, séries e animes.</p>
             <div class="hero-buttons">
-                <button id="exploreBtn">
-                    Explorar
-                </button>
-                <button id="trailerBtn">
-                    <i class="fa-solid fa-play"></i>
-                    Trailer
-                </button>
+                <button id="exploreBtn">Explorar</button>
+                <button id="trailerBtn"><i class="fa-solid fa-play"></i> Trailer</button>
             </div>
         </div>
     </section>
 
-    <!--==========================
-          CATEGORIAS
-    ===========================-->
-
+    <!-- ===== CATEGORIAS ===== -->
     <section class="categories">
         <button class="category active" data-cat="all">Todos</button>
         <button class="category" data-cat="ação">Ação</button>
@@ -1155,78 +979,48 @@
         <button class="category" data-cat="dc">DC</button>
     </section>
 
-    <!--==========================
-          EM DESTAQUE
-    ===========================-->
-
+    <!-- ===== FILMES ===== -->
     <main>
         <section class="movies-section">
             <div class="section-header">
                 <h2>🔥 Em Destaque</h2>
                 <button id="verTudoDestaque">Ver Tudo</button>
             </div>
-            <div id="moviesGrid" class="movies-grid">
-                <!-- Cards serão criados pelo JavaScript -->
-            </div>
+            <div id="moviesGrid" class="movies-grid"></div>
         </section>
-
-        <!--==========================
-          FILMES POPULARES
-        ===========================-->
 
         <section class="movies-section">
             <div class="section-header">
                 <h2>🎬 Filmes Populares</h2>
                 <button id="verTudoFilmes">Ver Tudo</button>
             </div>
-            <div id="popularMovies" class="movies-grid">
-                <!-- JavaScript -->
-            </div>
+            <div id="popularMovies" class="movies-grid"></div>
         </section>
-
-        <!--==========================
-          SÉRIES
-        ===========================-->
 
         <section class="movies-section">
             <div class="section-header">
                 <h2>📺 Séries</h2>
                 <button id="verTudoSeries">Ver Tudo</button>
             </div>
-            <div id="seriesGrid" class="movies-grid">
-            </div>
+            <div id="seriesGrid" class="movies-grid"></div>
         </section>
-
-        <!--==========================
-          ANIMES
-        ===========================-->
 
         <section class="movies-section">
             <div class="section-header">
                 <h2>🔥 Animes</h2>
                 <button id="verTudoAnimes">Ver Tudo</button>
             </div>
-            <div id="animeGrid" class="movies-grid">
-            </div>
+            <div id="animeGrid" class="movies-grid"></div>
         </section>
     </main>
 
-    <!--==========================
-            MODAL
-    ===========================-->
-
+    <!-- ===== MODAL ===== -->
     <div id="movieModal" class="modal">
         <div class="modal-content">
-            <span class="closeModal">
-                <i class="fa-solid fa-xmark"></i>
-            </span>
-            <div class="modal-banner">
-                <img id="modalBackdrop" src="" alt="">
-            </div>
+            <span class="closeModal"><i class="fa-solid fa-xmark"></i></span>
+            <div class="modal-banner"><img id="modalBackdrop" src="" alt=""></div>
             <div class="modal-info">
-                <div class="poster">
-                    <img id="modalPoster" src="" alt="">
-                </div>
+                <div class="poster"><img id="modalPoster" src="" alt=""></div>
                 <div class="details">
                     <h1 id="modalTitle">Título</h1>
                     <div class="movie-meta">
@@ -1234,4 +1028,23 @@
                         <span id="modalGenre">Ação</span>
                         <span id="modalRating">⭐ 9.8</span>
                     </div>
-                    <p id="modalDescription">Descrição do
+                    <p id="modalDescription">Descrição do filme...</p>
+                    <div class="cast">
+                        <h3>Elenco</h3>
+                        <div id="castContainer"></div>
+                    </div>
+                    <div class="buttons">
+                        <button id="watchMovie"><i class="fa-solid fa-play"></i> Assistir</button>
+                        <button id="favoriteMovie"><i class="fa-solid fa-heart"></i> Favoritar</button>
+                        <button id="shareMovie"><i class="fa-solid fa-share"></i> Compartilhar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== LOGIN ===== -->
+    <div id="loginModal" class="login-modal">
+        <div class="login-box">
+            <span class="closeLogin">×</span>
+            <h2
