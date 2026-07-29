@@ -1,54 +1,23 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FLICKTOPIA — Seu paraíso de filmes e séries</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FLICKTOPIA</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
 
     <style>
         /* ============================================================
-           CSS COMPLETO
+           FLICKTOPIA - CSS COMPLETO
            ============================================================ */
 
-        /* ---------- RESET & VARIÁVEIS ---------- */
-        :root {
-            --bg-primary: #0b0d15;
-            --bg-secondary: #141824;
-            --bg-card: #141824;
-            --bg-input: #0b0d15;
-            --text-primary: #f0f4ff;
-            --text-secondary: #b0b8d1;
-            --text-muted: #8892b0;
-            --border-color: rgba(255, 255, 255, 0.06);
-            --glow-color: #7b3ff5;
-            --glow-secondary: #c084fc;
-            --shadow-color: rgba(123, 63, 245, 0.2);
-            --header-bg: rgba(11, 13, 21, 0.85);
-            --card-hover: #1c212e;
-            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            --watch-color: #f43f5e;
-            --watch-hover: #e11d48;
-        }
-
-        [data-theme="light"] {
-            --bg-primary: #f0f4ff;
-            --bg-secondary: #ffffff;
-            --bg-card: #ffffff;
-            --bg-input: #f0f4ff;
-            --text-primary: #0b0d15;
-            --text-secondary: #2d3748;
-            --text-muted: #4a5568;
-            --border-color: rgba(0, 0, 0, 0.08);
-            --header-bg: rgba(240, 244, 255, 0.85);
-            --card-hover: #e8ecf9;
-            --shadow-color: rgba(0, 0, 0, 0.08);
-        }
-
+        /* ---------- RESET ---------- */
         * {
             margin: 0;
             padding: 0;
@@ -56,360 +25,454 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            line-height: 1.6;
-            scroll-behavior: smooth;
-            transition: background var(--transition), color var(--transition);
-            min-height: 100vh;
+            font-family: 'Poppins', sans-serif;
+            background: #0a0a0f;
+            color: #fff;
+            overflow-x: hidden;
+            transition: background 0.3s, color 0.3s;
         }
 
         a {
             text-decoration: none;
             color: inherit;
         }
+
         ul {
             list-style: none;
         }
-        img {
-            max-width: 100%;
-            display: block;
+
+        button {
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
         }
 
-        .container {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        /* ---------- SCROLLBAR ---------- */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: var(--bg-secondary);
-        }
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(180deg, var(--glow-secondary), var(--glow-color));
-            border-radius: 20px;
-        }
-
-        /* ---------- HEADER ---------- */
-        header {
-            background: var(--header-bg);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
-            border-bottom: 1px solid var(--border-color);
-            position: sticky;
+        /* ============================================================
+           LOADER
+           ============================================================ */
+        #loader {
+            position: fixed;
             top: 0;
-            z-index: 999;
-            padding: 14px 0;
-            transition: background var(--transition);
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #0a0a0f;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 99999;
+            transition: opacity 0.5s, visibility 0.5s;
         }
 
-        .navbar {
+        #loader.hide {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(123, 63, 245, 0.1);
+            border-top: 4px solid #7b3ff5;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        #loader h2 {
+            margin-top: 20px;
+            font-size: 1.8rem;
+            background: linear-gradient(135deg, #c084fc, #7b3ff5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* ============================================================
+           HEADER
+           ============================================================ */
+        header {
             display: flex;
             align-items: center;
             justify-content: space-between;
+            padding: 16px 40px;
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 999;
             flex-wrap: wrap;
             gap: 12px;
         }
 
         .logo {
-            font-size: 1.8rem;
-            font-weight: 900;
-            letter-spacing: -0.5px;
-            background: linear-gradient(135deg, var(--glow-secondary), var(--glow-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
             display: flex;
             align-items: center;
-            gap: 8px;
-            cursor: pointer;
+            gap: 10px;
+            font-size: 1.6rem;
+            font-weight: 800;
         }
+
         .logo i {
-            font-size: 1.9rem;
-            background: linear-gradient(135deg, var(--glow-secondary), var(--glow-color));
+            color: #7b3ff5;
+            font-size: 1.8rem;
+        }
+
+        .logo span {
+            background: linear-gradient(135deg, #c084fc, #7b3ff5);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
-        .search-wrapper {
+        nav ul {
+            display: flex;
+            gap: 28px;
+            font-weight: 500;
+        }
+
+        nav ul a {
+            color: #a0a0b8;
+            transition: color 0.3s;
+            position: relative;
+            font-size: 0.95rem;
+            cursor: pointer;
+        }
+
+        nav ul a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #7b3ff5, #c084fc);
+            transition: width 0.3s;
+        }
+
+        nav ul a:hover::after,
+        nav ul a.active::after {
+            width: 100%;
+        }
+
+        nav ul a:hover,
+        nav ul a.active {
+            color: #fff;
+        }
+
+        .header-actions {
             display: flex;
             align-items: center;
-            background: var(--bg-input);
-            border: 1px solid var(--border-color);
-            border-radius: 60px;
-            padding: 4px 8px 4px 20px;
-            transition: border-color var(--transition), box-shadow var(--transition);
-            flex: 1;
-            max-width: 420px;
-            min-width: 160px;
+            gap: 14px;
+            flex-wrap: wrap;
         }
-        .search-wrapper:focus-within {
-            border-color: var(--glow-color);
-            box-shadow: 0 0 20px var(--shadow-color);
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            background: #1a1a24;
+            border-radius: 30px;
+            padding: 8px 16px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            transition: border-color 0.3s;
         }
-        .search-wrapper input {
+
+        .search-box:focus-within {
+            border-color: #7b3ff5;
+        }
+
+        .search-box i {
+            color: #6a6a82;
+            margin-right: 10px;
+        }
+
+        .search-box input {
             background: transparent;
             border: none;
             outline: none;
-            color: var(--text-primary);
-            font-size: 0.95rem;
-            padding: 8px 0;
-            width: 100%;
-            font-family: 'Inter', sans-serif;
-        }
-        .search-wrapper input::placeholder {
-            color: var(--text-muted);
-        }
-        .search-wrapper button {
-            background: linear-gradient(135deg, var(--glow-color), var(--glow-secondary));
-            border: none;
-            border-radius: 60px;
-            padding: 8px 18px;
             color: #fff;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.3s;
-            font-weight: 700;
-        }
-        .search-wrapper button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 30px var(--shadow-color);
+            font-size: 0.9rem;
+            width: 180px;
+            font-family: 'Poppins', sans-serif;
         }
 
-        .nav-links {
-            display: flex;
-            gap: 24px;
+        .search-box input::placeholder {
+            color: #6a6a82;
+        }
+
+        #themeToggle {
+            background: #1a1a24;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 30px;
+            padding: 8px 14px;
+            color: #a0a0b8;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+        }
+
+        #themeToggle:hover {
+            border-color: #7b3ff5;
+            color: #fff;
+        }
+
+        #loginBtn {
+            background: linear-gradient(135deg, #7b3ff5, #c084fc);
+            border: none;
+            border-radius: 30px;
+            padding: 8px 20px;
+            color: #fff;
             font-weight: 600;
             font-size: 0.9rem;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-        .nav-links a {
-            color: var(--text-secondary);
-            transition: color var(--transition);
-            position: relative;
-            cursor: pointer;
-        }
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: -4px;
-            width: 0%;
-            height: 2px;
-            background: linear-gradient(90deg, var(--glow-secondary), var(--glow-color));
-            transition: width var(--transition);
-        }
-        .nav-links a:hover {
-            color: var(--text-primary);
-        }
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-        .nav-links a.active {
-            color: var(--text-primary);
-        }
-        .nav-links a.active::after {
-            width: 100%;
+            transition: transform 0.3s, box-shadow 0.3s;
         }
 
-        .nav-actions {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-            flex-wrap: wrap;
+        #loginBtn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(123, 63, 245, 0.3);
         }
 
-        .btn-glow {
-            background: linear-gradient(135deg, var(--glow-color), var(--glow-secondary));
-            padding: 10px 22px;
-            border-radius: 40px;
-            font-weight: 700;
-            color: #fff !important;
-            box-shadow: 0 0 20px var(--shadow-color);
-            transition: box-shadow var(--transition), transform 0.2s;
-            border: none;
-            cursor: pointer;
-            font-size: 0.9rem;
-            font-family: 'Inter', sans-serif;
-        }
-        .btn-glow:hover {
-            box-shadow: 0 0 40px var(--shadow-color);
-            transform: scale(1.04);
-            color: #fff !important;
-        }
-        .btn-glow i {
+        #loginBtn i {
             margin-right: 6px;
         }
 
-        .btn-icon {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-color);
-            border-radius: 40px;
-            padding: 10px 16px;
-            color: var(--text-secondary);
-            cursor: pointer;
-            transition: all var(--transition);
-            font-size: 1.1rem;
-        }
-        .btn-icon:hover {
-            border-color: var(--glow-color);
-            color: var(--text-primary);
-        }
-
-        /* ---------- HERO ---------- */
+        /* ============================================================
+           HERO
+           ============================================================ */
         .hero {
-            padding: 60px 0 40px;
-            text-align: center;
             position: relative;
+            height: 70vh;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(135deg, #0a0a0f, #1a1030);
             overflow: hidden;
         }
+
         .hero::before {
             content: '';
             position: absolute;
-            top: -30%;
-            left: -10%;
-            width: 120%;
-            height: 140%;
-            background: radial-gradient(circle at 30% 40%, rgba(123, 63, 245, 0.06), transparent 70%);
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 40%, rgba(123, 63, 245, 0.08), transparent 60%);
             pointer-events: none;
         }
-        .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 900;
-            letter-spacing: -1px;
-            line-height: 1.2;
-            position: relative;
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, transparent, rgba(10, 10, 15, 0.8));
         }
-        .hero h1 span {
-            background: linear-gradient(135deg, var(--glow-secondary), var(--glow-color));
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            padding: 20px;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+            letter-spacing: -1px;
+        }
+
+        .hero-content h1 span {
+            background: linear-gradient(135deg, #c084fc, #7b3ff5);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-        .hero p {
+
+        .hero-content p {
             font-size: 1.2rem;
-            color: var(--text-secondary);
-            max-width: 640px;
-            margin: 16px auto 28px;
-            position: relative;
-        }
-        .hero-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 14px;
-            flex-wrap: wrap;
-            position: relative;
-        }
-        .hero-buttons .btn-glow {
-            padding: 14px 36px;
-            font-size: 1rem;
-        }
-        .btn-outline {
-            background: transparent;
-            border: 1.5px solid var(--border-color);
-            padding: 14px 36px;
-            border-radius: 40px;
-            font-weight: 700;
-            color: var(--text-primary);
-            transition: all var(--transition);
-            cursor: pointer;
-            font-size: 1rem;
-            font-family: 'Inter', sans-serif;
-        }
-        .btn-outline:hover {
-            border-color: var(--glow-color);
-            background: rgba(123, 63, 245, 0.06);
+            color: #a0a0b8;
+            max-width: 500px;
+            margin: 0 auto 30px;
         }
 
-        /* ---------- SEÇÃO TÍTULO ---------- */
+        .hero-buttons {
+            display: flex;
+            gap: 14px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .hero-buttons button {
+            padding: 12px 32px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        #exploreBtn {
+            background: linear-gradient(135deg, #7b3ff5, #c084fc);
+            border: none;
+            color: #fff;
+            box-shadow: 0 0 30px rgba(123, 63, 245, 0.3);
+        }
+
+        #exploreBtn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 50px rgba(123, 63, 245, 0.5);
+        }
+
+        #trailerBtn {
+            background: transparent;
+            border: 1.5px solid rgba(255, 255, 255, 0.15);
+            color: #fff;
+        }
+
+        #trailerBtn:hover {
+            border-color: #7b3ff5;
+            background: rgba(123, 63, 245, 0.1);
+        }
+
+        #trailerBtn i {
+            margin-right: 8px;
+        }
+
+        /* ============================================================
+           CATEGORIAS
+           ============================================================ */
+        .categories {
+            display: flex;
+            gap: 10px;
+            padding: 24px 40px;
+            overflow-x: auto;
+            background: rgba(10, 10, 15, 0.5);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+            scrollbar-width: none;
+        }
+
+        .categories::-webkit-scrollbar {
+            display: none;
+        }
+
+        .category {
+            padding: 8px 20px;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            background: transparent;
+            color: #a0a0b8;
+            font-weight: 500;
+            font-size: 0.85rem;
+            white-space: nowrap;
+            transition: all 0.3s;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .category:hover {
+            border-color: #7b3ff5;
+            color: #fff;
+        }
+
+        .category.active {
+            background: linear-gradient(135deg, #7b3ff5, #c084fc);
+            border-color: transparent;
+            color: #fff;
+        }
+
+        /* ============================================================
+           FILMES
+           ============================================================ */
+        .movies-section {
+            padding: 30px 40px 10px;
+        }
+
         .section-header {
             display: flex;
             justify-content: space-between;
-            align-items: flex-end;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin: 40px 0 8px;
-        }
-        .section-title {
-            font-size: 2rem;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-        }
-        .section-sub {
-            color: var(--text-secondary);
-            margin-bottom: 24px;
-            font-size: 1rem;
-        }
-        .section-count {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            font-weight: 600;
-        }
-
-        /* ---------- CATEGORIAS ---------- */
-        .categorias-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            gap: 16px;
-            margin-bottom: 40px;
-        }
-        .cat-card {
-            background: var(--bg-card);
-            border-radius: 20px;
-            padding: 24px 12px;
-            text-align: center;
-            border: 1px solid var(--border-color);
-            transition: all var(--transition);
-            cursor: pointer;
-        }
-        .cat-card:hover {
-            transform: translateY(-6px);
-            background: var(--card-hover);
-            box-shadow: 0 12px 40px var(--shadow-color);
-        }
-        .cat-card i {
-            font-size: 2.4rem;
-            color: var(--glow-secondary);
-            margin-bottom: 8px;
-        }
-        .cat-card h3 {
-            font-weight: 700;
-            font-size: 1rem;
-        }
-
-        /* ---------- CARDS ---------- */
-        .movies-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 24px;
+            align-items: center;
             margin-bottom: 20px;
         }
+
+        .section-header h2 {
+            font-size: 1.6rem;
+            font-weight: 700;
+        }
+
+        .section-header button {
+            background: transparent;
+            border: none;
+            color: #7b3ff5;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .section-header button:hover {
+            color: #c084fc;
+        }
+
+        .movies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
         .movie-card {
-            background: var(--bg-card);
-            border-radius: 20px;
+            background: #14141e;
+            border-radius: 16px;
             overflow: hidden;
-            border: 1px solid var(--border-color);
-            transition: all var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            transition: all 0.3s;
             cursor: pointer;
             position: relative;
         }
+
         .movie-card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 20px 50px var(--shadow-color);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            border-color: rgba(123, 63, 245, 0.3);
         }
+
         .movie-card img {
             width: 100%;
             height: 280px;
             object-fit: cover;
-            background: var(--bg-secondary);
+            background: #1a1a24;
         }
+
+        .movie-card .movie-info {
+            padding: 14px 16px 18px;
+        }
+
+        .movie-card .movie-info h3 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .movie-card .movie-info .meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #6a6a82;
+            font-size: 0.8rem;
+        }
+
+        .movie-card .movie-info .rating {
+            color: #fbbf24;
+            font-weight: 600;
+        }
+
         .movie-card .favorite-btn {
             position: absolute;
             top: 12px;
@@ -417,123 +480,80 @@
             background: rgba(0, 0, 0, 0.6);
             backdrop-filter: blur(4px);
             border: none;
-            border-radius: 40px;
-            padding: 6px 12px;
+            border-radius: 30px;
+            padding: 4px 10px;
             color: #fff;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             cursor: pointer;
-            transition: all var(--transition);
+            transition: all 0.3s;
         }
+
         .movie-card .favorite-btn:hover {
             transform: scale(1.1);
         }
+
         .movie-card .favorite-btn.favorited {
             color: #fbbf24;
         }
-        .movie-info {
-            padding: 14px 16px 18px;
-        }
-        .movie-info h3 {
-            font-weight: 700;
-            font-size: 1rem;
-            margin-bottom: 2px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-        .movie-info .meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            color: var(--text-muted);
-            font-size: 0.8rem;
-        }
-        .movie-info .meta .tag {
-            background: rgba(123, 63, 245, 0.15);
-            padding: 2px 10px;
-            border-radius: 40px;
-            color: var(--glow-secondary);
-            font-weight: 700;
-            font-size: 0.65rem;
-            text-transform: uppercase;
-            letter-spacing: 0.3px;
-        }
-        .rating {
-            color: #fbbf24;
-            font-weight: 700;
-        }
 
-        /* ---------- BOTÃO ASSISTIR ---------- */
-        .btn-watch {
-            background: linear-gradient(135deg, var(--watch-color), var(--watch-hover));
-            color: #fff !important;
-            border: none;
-            border-radius: 40px;
-            padding: 8px 16px;
-            font-weight: 700;
-            font-size: 0.8rem;
-            cursor: pointer;
-            transition: all var(--transition);
-            font-family: 'Inter', sans-serif;
+        .movie-card .watch-btn {
             display: inline-flex;
             align-items: center;
             gap: 6px;
+            background: linear-gradient(135deg, #f43f5e, #e11d48);
+            color: #fff;
+            border: none;
+            border-radius: 30px;
+            padding: 6px 14px;
+            font-weight: 600;
+            font-size: 0.75rem;
             width: 100%;
             justify-content: center;
-            margin-top: 10px;
+            margin-top: 8px;
+            transition: all 0.3s;
             text-decoration: none;
-        }
-        .btn-watch:hover {
-            transform: scale(1.04);
-            box-shadow: 0 0 30px rgba(244, 63, 94, 0.4);
-            color: #fff !important;
-        }
-        .btn-watch i {
-            font-size: 0.9rem;
+            font-family: 'Poppins', sans-serif;
         }
 
-        .platform-badge {
-            display: inline-block;
-            background: rgba(244, 63, 94, 0.15);
-            padding: 2px 10px;
-            border-radius: 40px;
-            color: var(--watch-color);
-            font-weight: 600;
-            font-size: 0.65rem;
-            text-transform: uppercase;
-            letter-spacing: 0.3px;
+        .movie-card .watch-btn:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 20px rgba(244, 63, 94, 0.3);
         }
 
-        /* ---------- MODAL ---------- */
-        .modal-overlay {
+        /* ============================================================
+           MODAL
+           ============================================================ */
+        .modal {
             display: none;
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(8px);
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
             z-index: 9999;
             justify-content: center;
             align-items: center;
             padding: 20px;
         }
-        .modal-overlay.active {
+
+        .modal.active {
             display: flex;
         }
+
         .modal-content {
-            background: var(--bg-secondary);
-            border-radius: 32px;
-            max-width: 600px;
+            background: #14141e;
+            border-radius: 24px;
+            max-width: 800px;
             width: 100%;
             max-height: 90vh;
             overflow-y: auto;
-            padding: 32px;
-            border: 1px solid var(--border-color);
+            border: 1px solid rgba(255, 255, 255, 0.05);
             position: relative;
             animation: modalIn 0.3s ease;
         }
+
         @keyframes modalIn {
             from {
                 transform: scale(0.9) translateY(20px);
@@ -544,469 +564,674 @@
                 opacity: 1;
             }
         }
-        .modal-close {
+
+        .closeModal {
             position: absolute;
             top: 16px;
             right: 20px;
             font-size: 1.8rem;
-            background: none;
-            border: none;
-            color: var(--text-secondary);
+            color: #a0a0b8;
             cursor: pointer;
-            transition: color var(--transition);
+            z-index: 10;
+            transition: color 0.3s;
         }
-        .modal-close:hover {
-            color: var(--text-primary);
+
+        .closeModal:hover {
+            color: #fff;
         }
-        .modal-content img {
-            border-radius: 16px;
+
+        .modal-banner {
             width: 100%;
-            max-height: 300px;
+            height: 250px;
+            overflow: hidden;
+            border-radius: 24px 24px 0 0;
+        }
+
+        .modal-banner img {
+            width: 100%;
+            height: 100%;
             object-fit: cover;
-            margin-bottom: 16px;
-        }
-        .modal-content h2 {
-            font-size: 1.8rem;
-            font-weight: 800;
-            margin-bottom: 4px;
-        }
-        .modal-content .modal-meta {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            margin-bottom: 12px;
-        }
-        .modal-content .modal-overview {
-            color: var(--text-secondary);
-            line-height: 1.7;
-            margin-bottom: 16px;
-        }
-        .modal-content .modal-stats {
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-            padding-top: 12px;
-            border-top: 1px solid var(--border-color);
-        }
-        .modal-content .modal-stats span {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-weight: 600;
-            color: var(--text-secondary);
-        }
-        .modal-content .modal-stats i {
-            color: var(--glow-secondary);
         }
 
-        .modal-watch-btn {
-            background: linear-gradient(135deg, var(--watch-color), var(--watch-hover));
-            color: #fff !important;
-            border: none;
-            border-radius: 40px;
-            padding: 14px 32px;
-            font-weight: 800;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: all var(--transition);
-            font-family: 'Inter', sans-serif;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            text-decoration: none;
-            margin-top: 8px;
+        .modal-info {
+            display: flex;
+            gap: 24px;
+            padding: 24px;
+        }
+
+        .poster {
+            flex-shrink: 0;
+            width: 180px;
+        }
+
+        .poster img {
             width: 100%;
-            justify-content: center;
-        }
-        .modal-watch-btn:hover {
-            transform: scale(1.04);
-            box-shadow: 0 0 40px rgba(244, 63, 94, 0.5);
-            color: #fff !important;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
 
-        /* ---------- TOAST ---------- */
-        .toast {
+        .details {
+            flex: 1;
+        }
+
+        .details h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .movie-meta {
+            display: flex;
+            gap: 16px;
+            color: #a0a0b8;
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+        }
+
+        .movie-meta span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .details p {
+            color: #b0b0c8;
+            line-height: 1.7;
+            font-size: 0.95rem;
+            margin-bottom: 16px;
+        }
+
+        .cast {
+            margin-bottom: 16px;
+        }
+
+        .cast h3 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #a0a0b8;
+        }
+
+        #castContainer {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        #castContainer span {
+            background: #1a1a24;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: #b0b0c8;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .buttons button {
+            padding: 10px 20px;
+            border-radius: 30px;
+            border: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        #watchMovie {
+            background: linear-gradient(135deg, #f43f5e, #e11d48);
+            color: #fff;
+        }
+
+        #watchMovie:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(244, 63, 94, 0.3);
+        }
+
+        #favoriteMovie {
+            background: #1a1a24;
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        #favoriteMovie:hover {
+            border-color: #7b3ff5;
+        }
+
+        #favoriteMovie.favorited {
+            background: #7b3ff5;
+            color: #fff;
+        }
+
+        #shareMovie {
+            background: #1a1a24;
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        #shareMovie:hover {
+            border-color: #7b3ff5;
+        }
+
+        /* ============================================================
+           LOGIN MODAL
+           ============================================================ */
+        .login-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 9998;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-modal.active {
+            display: flex;
+        }
+
+        .login-box {
+            background: #14141e;
+            border-radius: 24px;
+            padding: 40px;
+            max-width: 420px;
+            width: 100%;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            animation: modalIn 0.3s ease;
+        }
+
+        .closeLogin {
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            font-size: 1.8rem;
+            color: #a0a0b8;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .closeLogin:hover {
+            color: #fff;
+        }
+
+        .login-box h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .login-box form {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .login-box input {
+            background: #1a1a24;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 12px;
+            padding: 14px 16px;
+            color: #fff;
+            font-size: 0.95rem;
+            font-family: 'Poppins', sans-serif;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .login-box input:focus {
+            border-color: #7b3ff5;
+        }
+
+        .login-box input::placeholder {
+            color: #6a6a82;
+        }
+
+        .login-box form button {
+            background: linear-gradient(135deg, #7b3ff5, #c084fc);
+            border: none;
+            border-radius: 12px;
+            padding: 14px;
+            color: #fff;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: all 0.3s;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .login-box form button:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 30px rgba(123, 63, 245, 0.3);
+        }
+
+        .divider {
+            text-align: center;
+            color: #6a6a82;
+            margin: 16px 0;
+            font-size: 0.9rem;
+        }
+
+        .google-login {
+            background: #1a1a24;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 12px;
+            padding: 12px;
+            color: #fff;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+            width: 100%;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .google-login:hover {
+            border-color: #7b3ff5;
+        }
+
+        .google-login i {
+            margin-right: 10px;
+        }
+
+        .login-box p {
+            text-align: center;
+            color: #6a6a82;
+            margin-top: 16px;
+            font-size: 0.9rem;
+        }
+
+        .login-box p a {
+            color: #7b3ff5;
+            font-weight: 600;
+        }
+
+        .login-box p a:hover {
+            color: #c084fc;
+        }
+
+        /* ============================================================
+           TOAST
+           ============================================================ */
+        #toast {
             position: fixed;
             bottom: 30px;
             right: 30px;
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-color);
+            background: #14141e;
+            border: 1px solid rgba(255, 255, 255, 0.06);
             border-radius: 16px;
-            padding: 16px 24px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
-            display: flex;
-            align-items: center;
-            gap: 12px;
+            padding: 14px 24px;
+            color: #fff;
+            font-weight: 600;
+            font-size: 0.95rem;
             z-index: 99999;
             transform: translateY(100px);
             opacity: 0;
             transition: all 0.4s ease;
-            max-width: 380px;
         }
-        .toast.show {
+
+        #toast.show {
             transform: translateY(0);
             opacity: 1;
         }
-        .toast i {
-            font-size: 1.4rem;
-            color: var(--glow-secondary);
-        }
-        .toast .toast-msg {
-            font-weight: 600;
-            font-size: 0.95rem;
+
+        /* ============================================================
+           BOTÃO TOPO
+           ============================================================ */
+        #backToTop {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: linear-gradient(135deg, #7b3ff5, #c084fc);
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            color: #fff;
+            font-size: 1.2rem;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 30px rgba(123, 63, 245, 0.3);
+            transition: all 0.3s;
+            z-index: 999;
         }
 
-        /* ---------- FOOTER ---------- */
+        #backToTop.show {
+            display: flex;
+        }
+
+        #backToTop:hover {
+            transform: scale(1.1);
+        }
+
+        /* ============================================================
+           FOOTER
+           ============================================================ */
         footer {
-            border-top: 1px solid var(--border-color);
-            padding: 36px 0 24px;
-            margin-top: 10px;
-        }
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 28px;
-            margin-bottom: 24px;
-        }
-        .footer-grid h4 {
-            font-weight: 700;
-            margin-bottom: 10px;
-            font-size: 0.95rem;
-        }
-        .footer-grid a {
-            color: var(--text-muted);
-            display: block;
-            margin-bottom: 4px;
-            transition: color var(--transition);
-            font-size: 0.9rem;
-            cursor: pointer;
-        }
-        .footer-grid a:hover {
-            color: var(--text-primary);
-        }
-        .footer-bottom {
-            text-align: center;
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            border-top: 1px solid var(--border-color);
-            padding-top: 20px;
-        }
-        .footer-bottom i {
-            color: var(--glow-secondary);
+            background: #0a0a0f;
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
+            padding: 40px 40px 20px;
+            margin-top: 20px;
         }
 
-        /* ---------- RESPONSIVO ---------- */
-        @media (max-width: 900px) {
-            .navbar {
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-container h2 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #c084fc, #7b3ff5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .footer-container p {
+            color: #6a6a82;
+            font-size: 0.9rem;
+        }
+
+        .footer-container h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .footer-container ul li {
+            margin-bottom: 6px;
+        }
+
+        .footer-container ul a {
+            color: #6a6a82;
+            transition: color 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .footer-container ul a:hover {
+            color: #fff;
+        }
+
+        .copyright {
+            text-align: center;
+            color: #4a4a5a;
+            font-size: 0.8rem;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
+            margin-top: 20px;
+        }
+
+        /* ============================================================
+           RESPONSIVO
+           ============================================================ */
+        @media (max-width: 1024px) {
+            header {
+                padding: 14px 20px;
+            }
+            .search-box input {
+                width: 120px;
+            }
+            .movies-grid {
+                grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
                 flex-direction: column;
                 align-items: stretch;
-                gap: 12px;
+                gap: 10px;
+                padding: 12px 16px;
             }
-            .search-wrapper {
-                max-width: 100%;
-            }
-            .nav-links {
+            nav ul {
                 justify-content: center;
                 gap: 16px;
-            }
-            .nav-actions {
-                justify-content: center;
-            }
-            .hero h1 {
-                font-size: 2.6rem;
-            }
-        }
-
-        @media (max-width: 600px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-            .hero p {
-                font-size: 1rem;
-            }
-            .movies-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 14px;
-            }
-            .movie-card img {
-                height: 180px;
-            }
-            .modal-content {
-                padding: 20px;
-                margin: 10px;
-            }
-            .section-title {
-                font-size: 1.5rem;
-            }
-            .categorias-grid {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 10px;
-            }
-            .cat-card {
-                padding: 16px 8px;
-            }
-            .cat-card i {
-                font-size: 1.8rem;
-            }
-            .toast {
-                bottom: 16px;
-                right: 16px;
-                left: 16px;
-                max-width: none;
-            }
-            .section-header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-        }
-
-        @media (max-width: 400px) {
-            .movies-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 10px;
-            }
-            .movie-card img {
-                height: 150px;
-            }
-            .movie-info h3 {
+                flex-wrap: wrap;
                 font-size: 0.85rem;
             }
-            .categorias-grid {
+            .header-actions {
+                justify-content: center;
+            }
+            .search-box input {
+                width: 140px;
+            }
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            .categories {
+                padding: 16px 16px;
+            }
+            .movies-section {
+                padding: 20px 16px 10px;
+            }
+            .movies-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 14px;
+            }
+            .modal-info {
+                flex-direction: column;
+                align-items: center;
+            }
+            .poster {
+                width: 150px;
+            }
+            .footer-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 1.8rem;
+            }
+            .hero-content p {
+                font-size: 0.95rem;
+            }
+            .movies-grid {
                 grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+            .movie-card img {
+                height: 200px;
+            }
+            .modal-content {
+                margin: 10px;
+            }
+            .buttons {
+                flex-direction: column;
+            }
+            .buttons button {
+                width: 100%;
+                justify-content: center;
+            }
+            .login-box {
+                padding: 24px 20px;
+                margin: 10px;
             }
         }
     </style>
 </head>
+
 <body>
 
-    <!-- ========== HEADER ========== -->
+    <!--==========================
+            LOADER
+    ===========================-->
+
+    <div id="loader">
+        <div class="spinner"></div>
+        <h2>FLICKTOPIA</h2>
+    </div>
+
+    <!--==========================
+            HEADER
+    ===========================-->
+
     <header>
-        <div class="container navbar">
-            <div class="logo" id="logoHome">
-                <i class="fas fa-film"></i> FLICKTOPIA
-            </div>
+        <div class="logo">
+            <i class="fa-solid fa-film"></i>
+            <span>FLICKTOPIA</span>
+        </div>
 
-            <div class="search-wrapper">
-                <input type="text" id="searchInput" placeholder="Buscar filmes ou séries..." />
-                <button id="searchBtn"><i class="fas fa-search"></i></button>
-            </div>
-
-            <ul class="nav-links">
-                <li><a href="#" data-filter="all" class="active">Início</a></li>
+        <nav>
+            <ul>
+                <li><a href="#" class="active" data-filter="all">Início</a></li>
                 <li><a href="#" data-filter="movie">Filmes</a></li>
-                <li><a href="#" data-filter="tv">Séries</a></li>
-                <li><a href="#" id="favoritesLink"><i class="fas fa-heart" style="color:#fbbf24;"></i> Favoritos</a></li>
+                <li><a href="#" data-filter="serie">Séries</a></li>
+                <li><a href="#" data-filter="anime">Animes</a></li>
+                <li><a href="#" id="favoritesNav">Favoritos</a></li>
             </ul>
+        </nav>
 
-            <div class="nav-actions">
-                <button class="btn-icon" id="themeToggle" title="Alternar tema">
-                    <i class="fas fa-moon"></i>
-                </button>
-                <button class="btn-glow" id="btnEntrar">
-                    <i class="fas fa-user-astronaut"></i> Entrar
-                </button>
+        <div class="header-actions">
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="searchInput" placeholder="Pesquisar Filmes ou Séries">
             </div>
+            <button id="themeToggle">
+                <i class="fa-solid fa-moon"></i>
+            </button>
+            <button id="loginBtn">
+                <i class="fa-solid fa-user"></i>
+                Entrar
+            </button>
         </div>
     </header>
 
-    <main>
+    <!--==========================
+            HERO
+    ===========================-->
 
-        <!-- ========== HERO ========== -->
-        <section class="hero container">
-            <h1>Bem-vindo ao <span>FLICKTOPIA</span></h1>
+    <section class="hero">
+        <div class="overlay"></div>
+        <div class="hero-content">
+            <h1>
+                Bem-vindo ao
+                <span>FLICKTOPIA</span>
+            </h1>
             <p>
-                O paraíso dos cinéfilos e maratonistas. Descubra os melhores filmes,
-                séries e tendências — tudo em um só lugar.
+                Assista milhares de filmes, séries e animes.
             </p>
             <div class="hero-buttons">
-                <button class="btn-glow" id="btnExplorar">
-                    <i class="fas fa-rocket"></i> Explorar agora
+                <button id="exploreBtn">
+                    Explorar
                 </button>
-                <button class="btn-outline" id="btnTrailer">
-                    <i class="fas fa-play"></i> Ver trailer
+                <button id="trailerBtn">
+                    <i class="fa-solid fa-play"></i>
+                    Trailer
                 </button>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- ========== CATEGORIAS ========== -->
-        <section class="container">
+    <!--==========================
+          CATEGORIAS
+    ===========================-->
+
+    <section class="categories">
+        <button class="category active" data-cat="all">Todos</button>
+        <button class="category" data-cat="ação">Ação</button>
+        <button class="category" data-cat="aventura">Aventura</button>
+        <button class="category" data-cat="comédia">Comédia</button>
+        <button class="category" data-cat="drama">Drama</button>
+        <button class="category" data-cat="anime">Anime</button>
+        <button class="category" data-cat="terror">Terror</button>
+        <button class="category" data-cat="ficção">Ficção</button>
+        <button class="category" data-cat="marvel">Marvel</button>
+        <button class="category" data-cat="dc">DC</button>
+    </section>
+
+    <!--==========================
+          EM DESTAQUE
+    ===========================-->
+
+    <main>
+        <section class="movies-section">
             <div class="section-header">
-                <div>
-                    <h2 class="section-title">🎭 Categorias</h2>
-                    <p class="section-sub">Navegue pelo universo do entretenimento</p>
-                </div>
+                <h2>🔥 Em Destaque</h2>
+                <button id="verTudoDestaque">Ver Tudo</button>
             </div>
-
-            <div class="categorias-grid" id="categoriasGrid">
-                <div class="cat-card" data-cat="acao">
-                    <i class="fas fa-gun"></i>
-                    <h3>Ação</h3>
-                </div>
-                <div class="cat-card" data-cat="aventura">
-                    <i class="fas fa-hat-wizard"></i>
-                    <h3>Aventura</h3>
-                </div>
-                <div class="cat-card" data-cat="animacao">
-                    <i class="fas fa-dragon"></i>
-                    <h3>Animação</h3>
-                </div>
-                <div class="cat-card" data-cat="comedia">
-                    <i class="fas fa-laugh"></i>
-                    <h3>Comédia</h3>
-                </div>
-                <div class="cat-card" data-cat="drama">
-                    <i class="fas fa-theater-masks"></i>
-                    <h3>Drama</h3>
-                </div>
-                <div class="cat-card" data-cat="ficcao">
-                    <i class="fas fa-rocket"></i>
-                    <h3>Ficção</h3>
-                </div>
-                <div class="cat-card" data-cat="terror">
-                    <i class="fas fa-skull"></i>
-                    <h3>Terror</h3>
-                </div>
-                <div class="cat-card" data-cat="romance">
-                    <i class="fas fa-heart"></i>
-                    <h3>Romance</h3>
-                </div>
+            <div id="moviesGrid" class="movies-grid">
+                <!-- Cards serão criados pelo JavaScript -->
             </div>
         </section>
 
-        <!-- ========== FILMES E SÉRIES ========== -->
-        <section class="container" id="moviesSection">
+        <!--==========================
+          FILMES POPULARES
+        ===========================-->
+
+        <section class="movies-section">
             <div class="section-header">
-                <div>
-                    <h2 class="section-title">📺 Em Destaque</h2>
-                    <p class="section-sub" id="resultSub">Os melhores filmes em alta qualidade</p>
-                </div>
-                <span class="section-count" id="resultCount">0 resultados</span>
+                <h2>🎬 Filmes Populares</h2>
+                <button id="verTudoFilmes">Ver Tudo</button>
             </div>
-
-            <div class="movies-grid" id="moviesGrid"></div>
-
-            <div style="text-align:center; margin: 10px 0 30px;">
-                <button class="btn-outline" id="loadMoreBtn" style="padding:12px 40px;">
-                    <i class="fas fa-plus"></i> Carregar mais filmes
-                </button>
+            <div id="popularMovies" class="movies-grid">
+                <!-- JavaScript -->
             </div>
         </section>
 
+        <!--==========================
+          SÉRIES
+        ===========================-->
+
+        <section class="movies-section">
+            <div class="section-header">
+                <h2>📺 Séries</h2>
+                <button id="verTudoSeries">Ver Tudo</button>
+            </div>
+            <div id="seriesGrid" class="movies-grid">
+            </div>
+        </section>
+
+        <!--==========================
+          ANIMES
+        ===========================-->
+
+        <section class="movies-section">
+            <div class="section-header">
+                <h2>🔥 Animes</h2>
+                <button id="verTudoAnimes">Ver Tudo</button>
+            </div>
+            <div id="animeGrid" class="movies-grid">
+            </div>
+        </section>
     </main>
 
-    <!-- ========== MODAL ========== -->
-    <div class="modal-overlay" id="modalOverlay">
-        <div class="modal-content" id="modalContent">
-            <button class="modal-close" id="modalClose">&times;</button>
-            <img id="modalImg" src="" alt="" />
-            <h2 id="modalTitle"></h2>
-            <div class="modal-meta" id="modalMeta"></div>
-            <p class="modal-overview" id="modalOverview"></p>
-            <div class="modal-stats" id="modalStats"></div>
-        </div>
-    </div>
+    <!--==========================
+            MODAL
+    ===========================-->
 
-    <!-- ========== TOAST ========== -->
-    <div class="toast" id="toast">
-        <i class="fas fa-check-circle"></i>
-        <span class="toast-msg" id="toastMsg">Item adicionado aos favoritos!</span>
-    </div>
-
-    <!-- ========== FOOTER ========== -->
-    <footer>
-        <div class="container">
-            <div class="footer-grid">
-                <div>
-                    <h4>FLICKTOPIA</h4>
-                    <a href="#">Sobre nós</a>
-                    <a href="#">Contato</a>
-                    <a href="#">Imprensa</a>
-                </div>
-                <div>
-                    <h4>Conteúdo</h4>
-                    <a href="#">Filmes</a>
-                    <a href="#">Séries</a>
-                    <a href="#">Documentários</a>
-                </div>
-                <div>
-                    <h4>Suporte</h4>
-                    <a href="#">FAQ</a>
-                    <a href="#">Privacidade</a>
-                    <a href="#">Termos</a>
-                </div>
-                <div>
-                    <h4>Redes</h4>
-                    <a href="#"><i class="fab fa-instagram"></i> Instagram</a>
-                    <a href="#"><i class="fab fa-twitter"></i> Twitter</a>
-                    <a href="#"><i class="fab fa-youtube"></i> YouTube</a>
-                </div>
+    <div id="movieModal" class="modal">
+        <div class="modal-content">
+            <span class="closeModal">
+                <i class="fa-solid fa-xmark"></i>
+            </span>
+            <div class="modal-banner">
+                <img id="modalBackdrop" src="" alt="">
             </div>
-            <div class="footer-bottom">
-                <i class="fas fa-film"></i> FLICKTOPIA &bull; 2026 &bull; Feito com pipoca e café ☕
-            </div>
-        </div>
-    </footer>
-
-    <!-- ============================================================
-    JAVASCRIPT COMPLETO
-    ============================================================ -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-
-            // ============================================================
-            //  BANCO DE FILMES (EDITÁVEL)
-            //  ============================================================
-            //  ADICIONE SEUS FILMES AQUI!
-            //  Para cada filme, coloque:
-            //  - titulo: Nome do filme
-            //  - ano: Ano de lançamento
-            //  - tipo: 'Filme' ou 'Série'
-            //  - nota: 0 a 5 (use 4.5, 4.8, etc)
-            //  - imagem: URL da imagem (pode ser do Google Imagens)
-            //  - categoria: 'acao', 'aventura', 'animacao', 'comedia', 'drama', 'ficcao', 'terror', 'romance'
-            //  - sinopse: Descrição curta do filme
-            //  - url: LINK DO YOUTUBE para assistir (em alta qualidade!)
-            //  - plataforma: 'YouTube' ou 'Netflix' ou 'Prime Video'
-            // ============================================================
-
-            const filmes = [{
-                id: 1,
-                titulo: 'Interestelar',
-                ano: 2014,
-                tipo: 'Filme',
-                nota: 4.8,
-                imagem: 'https://image.tmdb.org/t/p/w500/gEU2QniE6E77NI6lCU6M1nbklxV.jpg',
-                categoria: 'ficcao',
-                sinopse: 'Um grupo de exploradores viaja por um buraco de minhoca em busca de um novo lar para a humanidade.',
-                url: 'https://www.youtube.com/watch?v=zSWdZVtXT7E',
-                plataforma: 'YouTube'
-            }, {
-                id: 2,
-                titulo: 'Duna: Parte 2',
-                ano: 2024,
-                tipo: 'Filme',
-                nota: 4.9,
-                imagem: 'https://image.tmdb.org/t/p/w500/xOMo8BRKQYwR8jxK3a9KpD5k2z1.jpg',
-                categoria: 'ficcao',
-                sinopse: 'Paul Atreides continua sua jornada em Arrakis, lutando contra seus inimigos e tentando cumprir seu destino.',
-                url: 'https://www.youtube.com/watch?v=8Bk6j5NnFp4',
-                plataforma: 'YouTube'
-            }, {
-                id: 3,
-                titulo: 'Oppenheimer',
-                ano: 2023,
-                tipo: 'Filme',
-                nota: 4.7,
-                imagem: 'https://image.tmdb.org/t/p/w500/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg',
-                categoria: 'drama',
-                sinopse: 'A história do físico J. Robert Oppenheimer e seu papel no desenvolvimento da bomba atômica.',
-                url: 'https://www.youtube.com/watch?v=uYPbbksJxIg',
-                plataforma: 'YouTube'
-            }, {
-                id: 4,
-                titulo: 'The Last of Us',
-                ano: 2023,
-                tipo: 'Série',
-                nota: 4.7,
-                imagem: 'https://image.tmdb.org/t/p/w500/uKvVjHN5kLqZ3s4zGk5kKZ5s5lL.jpg',
-                categoria: 'drama',
-                sinopse: 'Em um mundo pós-ap
+            <div class="modal-info">
+                <div class="poster">
+                    <img id="modalPoster" src="" alt="">
+                </div>
+                <div class="details">
+                    <h1 id="modalTitle">Título</h1>
+                    <div class="movie-meta">
+                        <span id="modalYear">2025</span>
+                        <span id="modalGenre">Ação</span>
+                        <span id="modalRating">⭐ 9.8</span>
+                    </div>
+                    <p id="modalDescription">Descrição do
