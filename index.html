@@ -12,19 +12,26 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
 
     <style>
-        /* ===== TODO O CSS AQUI (igual ao que você já tem) ===== */
+        /* ============================================================
+           FLICKTOPIA - CSS COMPLETO
+           ============================================================ */
+
+        /* ---------- RESET ---------- */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+
         body {
             font-family: 'Poppins', sans-serif;
             background: #0a0a0f;
             color: #fff;
             overflow-x: hidden;
             transition: background 0.3s, color 0.3s;
+            min-height: 100vh;
         }
+
         a {
             text-decoration: none;
             color: inherit;
@@ -37,7 +44,9 @@
             font-family: 'Poppins', sans-serif;
         }
 
-        /* LOADER */
+        /* ============================================================
+           LOADER
+           ============================================================ */
         #loader {
             position: fixed;
             top: 0;
@@ -50,11 +59,12 @@
             align-items: center;
             justify-content: center;
             z-index: 99999;
-            transition: opacity 0.5s, visibility 0.5s;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
         }
         #loader.hide {
             opacity: 0;
             visibility: hidden;
+            pointer-events: none;
         }
         .spinner {
             width: 60px;
@@ -78,7 +88,9 @@
             background-clip: text;
         }
 
-        /* HEADER */
+        /* ============================================================
+           HEADER
+           ============================================================ */
         header {
             display: flex;
             align-items: center;
@@ -93,6 +105,7 @@
             flex-wrap: wrap;
             gap: 12px;
         }
+
         .logo {
             display: flex;
             align-items: center;
@@ -110,6 +123,7 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
+
         nav ul {
             display: flex;
             gap: 28px;
@@ -140,12 +154,14 @@
         nav ul a.active {
             color: #fff;
         }
+
         .header-actions {
             display: flex;
             align-items: center;
             gap: 14px;
             flex-wrap: wrap;
         }
+
         .search-box {
             display: flex;
             align-items: center;
@@ -174,6 +190,7 @@
         .search-box input::placeholder {
             color: #6a6a82;
         }
+
         #themeToggle {
             background: #1a1a24;
             border: 1px solid rgba(255, 255, 255, 0.06);
@@ -187,6 +204,7 @@
             border-color: #7b3ff5;
             color: #fff;
         }
+
         #loginBtn {
             background: linear-gradient(135deg, #7b3ff5, #c084fc);
             border: none;
@@ -205,7 +223,9 @@
             margin-right: 6px;
         }
 
-        /* HERO */
+        /* ============================================================
+           HERO
+           ============================================================ */
         .hero {
             position: relative;
             height: 70vh;
@@ -294,7 +314,9 @@
             margin-right: 8px;
         }
 
-        /* CATEGORIAS */
+        /* ============================================================
+           CATEGORIAS
+           ============================================================ */
         .categories {
             display: flex;
             gap: 10px;
@@ -329,7 +351,9 @@
             color: #fff;
         }
 
-        /* FILMES */
+        /* ============================================================
+           FILMES
+           ============================================================ */
         .movies-section {
             padding: 30px 40px 10px;
         }
@@ -354,11 +378,13 @@
         .section-header button:hover {
             color: #c084fc;
         }
+
         .movies-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             gap: 20px;
         }
+
         .movie-card {
             background: #14141e;
             border-radius: 16px;
@@ -444,7 +470,9 @@
             box-shadow: 0 0 20px rgba(244, 63, 94, 0.3);
         }
 
-        /* MODAL */
+        /* ============================================================
+           MODAL
+           ============================================================ */
         .modal {
             display: none;
             position: fixed;
@@ -612,7 +640,9 @@
             border-color: #7b3ff5;
         }
 
-        /* LOGIN */
+        /* ============================================================
+           LOGIN MODAL
+           ============================================================ */
         .login-modal {
             display: none;
             position: fixed;
@@ -732,7 +762,9 @@
             color: #c084fc;
         }
 
-        /* TOAST */
+        /* ============================================================
+           TOAST
+           ============================================================ */
         #toast {
             position: fixed;
             bottom: 30px;
@@ -754,7 +786,9 @@
             opacity: 1;
         }
 
-        /* BOTÃO TOPO */
+        /* ============================================================
+           BOTÃO TOPO
+           ============================================================ */
         #backToTop {
             position: fixed;
             bottom: 30px;
@@ -780,7 +814,9 @@
             transform: scale(1.1);
         }
 
-        /* FOOTER */
+        /* ============================================================
+           FOOTER
+           ============================================================ */
         footer {
             background: #0a0a0f;
             border-top: 1px solid rgba(255, 255, 255, 0.03);
@@ -831,7 +867,9 @@
             margin-top: 20px;
         }
 
-        /* RESPONSIVO */
+        /* ============================================================
+           RESPONSIVO
+           ============================================================ */
         @media (max-width: 1024px) {
             header {
                 padding: 14px 20px;
@@ -843,6 +881,7 @@
                 grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
             }
         }
+
         @media (max-width: 768px) {
             header {
                 flex-direction: column;
@@ -887,6 +926,7 @@
                 text-align: center;
             }
         }
+
         @media (max-width: 480px) {
             .hero-content h1 {
                 font-size: 1.8rem;
@@ -921,18 +961,19 @@
 
 <body>
 
-    <!-- ===== LOADER ===== -->
+    <!-- ========================== LOADER ========================== -->
     <div id="loader">
         <div class="spinner"></div>
         <h2>FLICKTOPIA</h2>
     </div>
 
-    <!-- ===== HEADER ===== -->
+    <!-- ========================== HEADER ========================== -->
     <header>
         <div class="logo">
             <i class="fa-solid fa-film"></i>
             <span>FLICKTOPIA</span>
         </div>
+
         <nav>
             <ul>
                 <li><a href="#" class="active" data-filter="all">Início</a></li>
@@ -942,6 +983,7 @@
                 <li><a href="#" id="favoritesNav">❤️ Favoritos</a></li>
             </ul>
         </nav>
+
         <div class="header-actions">
             <div class="search-box">
                 <i class="fa-solid fa-magnifying-glass"></i>
@@ -952,20 +994,20 @@
         </div>
     </header>
 
-    <!-- ===== HERO ===== -->
+    <!-- ========================== HERO ========================== -->
     <section class="hero">
         <div class="overlay"></div>
         <div class="hero-content">
             <h1>Bem-vindo ao <span>FLICKTOPIA</span></h1>
             <p>Assista milhares de filmes, séries e animes.</p>
             <div class="hero-buttons">
-                <button id="exploreBtn">Explorar</button>
+                <button id="exploreBtn"><i class="fa-solid fa-rocket"></i> Explorar</button>
                 <button id="trailerBtn"><i class="fa-solid fa-play"></i> Trailer</button>
             </div>
         </div>
     </section>
 
-    <!-- ===== CATEGORIAS ===== -->
+    <!-- ========================== CATEGORIAS ========================== -->
     <section class="categories">
         <button class="category active" data-cat="all">Todos</button>
         <button class="category" data-cat="ação">Ação</button>
@@ -979,72 +1021,9 @@
         <button class="category" data-cat="dc">DC</button>
     </section>
 
-    <!-- ===== FILMES ===== -->
+    <!-- ========================== FILMES ========================== -->
     <main>
         <section class="movies-section">
             <div class="section-header">
                 <h2>🔥 Em Destaque</h2>
-                <button id="verTudoDestaque">Ver Tudo</button>
-            </div>
-            <div id="moviesGrid" class="movies-grid"></div>
-        </section>
-
-        <section class="movies-section">
-            <div class="section-header">
-                <h2>🎬 Filmes Populares</h2>
-                <button id="verTudoFilmes">Ver Tudo</button>
-            </div>
-            <div id="popularMovies" class="movies-grid"></div>
-        </section>
-
-        <section class="movies-section">
-            <div class="section-header">
-                <h2>📺 Séries</h2>
-                <button id="verTudoSeries">Ver Tudo</button>
-            </div>
-            <div id="seriesGrid" class="movies-grid"></div>
-        </section>
-
-        <section class="movies-section">
-            <div class="section-header">
-                <h2>🔥 Animes</h2>
-                <button id="verTudoAnimes">Ver Tudo</button>
-            </div>
-            <div id="animeGrid" class="movies-grid"></div>
-        </section>
-    </main>
-
-    <!-- ===== MODAL ===== -->
-    <div id="movieModal" class="modal">
-        <div class="modal-content">
-            <span class="closeModal"><i class="fa-solid fa-xmark"></i></span>
-            <div class="modal-banner"><img id="modalBackdrop" src="" alt=""></div>
-            <div class="modal-info">
-                <div class="poster"><img id="modalPoster" src="" alt=""></div>
-                <div class="details">
-                    <h1 id="modalTitle">Título</h1>
-                    <div class="movie-meta">
-                        <span id="modalYear">2025</span>
-                        <span id="modalGenre">Ação</span>
-                        <span id="modalRating">⭐ 9.8</span>
-                    </div>
-                    <p id="modalDescription">Descrição do filme...</p>
-                    <div class="cast">
-                        <h3>Elenco</h3>
-                        <div id="castContainer"></div>
-                    </div>
-                    <div class="buttons">
-                        <button id="watchMovie"><i class="fa-solid fa-play"></i> Assistir</button>
-                        <button id="favoriteMovie"><i class="fa-solid fa-heart"></i> Favoritar</button>
-                        <button id="shareMovie"><i class="fa-solid fa-share"></i> Compartilhar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- ===== LOGIN ===== -->
-    <div id="loginModal" class="login-modal">
-        <div class="login-box">
-            <span class="closeLogin">×</span>
-            <h2
+                <button id="verTudoDestaque
