@@ -5,17 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>FLICKTOPIA — Seu paraíso de filmes e séries</title>
 
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet" />
-
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 
     <style>
         /* ============================================================
-           FLICKTOPIA — CSS COMPLETO
+           CSS COMPLETO
            ============================================================ */
 
         /* ---------- RESET & VARIÁVEIS ---------- */
@@ -38,7 +35,6 @@
             --watch-hover: #e11d48;
         }
 
-        /* Modo Claro */
         [data-theme="light"] {
             --bg-primary: #f0f4ff;
             --bg-secondary: #ffffff;
@@ -99,27 +95,6 @@
             border-radius: 20px;
         }
 
-        /* ---------- LOADING SPINNER ---------- */
-        .spinner {
-            display: none;
-            justify-content: center;
-            align-items: center;
-            padding: 40px 0;
-        }
-        .spinner.active {
-            display: flex;
-        }
-        .spinner i {
-            font-size: 2.5rem;
-            color: var(--glow-color);
-            animation: spin 0.8s linear infinite;
-        }
-        @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
         /* ---------- HEADER ---------- */
         header {
             background: var(--header-bg);
@@ -162,7 +137,6 @@
             background-clip: text;
         }
 
-        /* Barra de Pesquisa */
         .search-wrapper {
             display: flex;
             align-items: center;
@@ -220,6 +194,7 @@
             color: var(--text-secondary);
             transition: color var(--transition);
             position: relative;
+            cursor: pointer;
         }
         .nav-links a::after {
             content: '';
@@ -286,36 +261,6 @@
         .btn-icon:hover {
             border-color: var(--glow-color);
             color: var(--text-primary);
-        }
-
-        /* Filtros rápidos */
-        .filter-tabs {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-            margin-bottom: 20px;
-        }
-        .filter-tabs button {
-            background: transparent;
-            border: 1px solid var(--border-color);
-            border-radius: 40px;
-            padding: 6px 18px;
-            color: var(--text-secondary);
-            font-weight: 600;
-            font-size: 0.8rem;
-            cursor: pointer;
-            transition: all var(--transition);
-            font-family: 'Inter', sans-serif;
-        }
-        .filter-tabs button:hover {
-            border-color: var(--glow-color);
-            color: var(--text-primary);
-        }
-        .filter-tabs button.active {
-            background: linear-gradient(135deg, var(--glow-color), var(--glow-secondary));
-            border-color: transparent;
-            color: #fff;
-            box-shadow: 0 0 20px var(--shadow-color);
         }
 
         /* ---------- HERO ---------- */
@@ -438,16 +383,11 @@
             font-weight: 700;
             font-size: 1rem;
         }
-        .cat-card p {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            margin-top: 2px;
-        }
 
         /* ---------- CARDS ---------- */
         .movies-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
             gap: 24px;
             margin-bottom: 20px;
         }
@@ -683,58 +623,6 @@
             color: #fff !important;
         }
 
-        /* ---------- NEWSLETTER ---------- */
-        .newsletter {
-            background: linear-gradient(135deg, var(--bg-secondary), var(--card-hover));
-            border-radius: 32px;
-            padding: 50px 32px;
-            text-align: center;
-            margin: 40px 0 50px;
-            border: 1px solid var(--border-color);
-        }
-        .newsletter h2 {
-            font-size: 1.8rem;
-            font-weight: 800;
-        }
-        .newsletter p {
-            color: var(--text-secondary);
-            max-width: 480px;
-            margin: 6px auto 22px;
-        }
-        .newsletter form {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 10px;
-            max-width: 500px;
-            margin: 0 auto;
-        }
-        .newsletter input {
-            flex: 1;
-            min-width: 200px;
-            padding: 12px 22px;
-            border-radius: 60px;
-            border: 1px solid var(--border-color);
-            background: var(--bg-input);
-            color: var(--text-primary);
-            font-size: 0.95rem;
-            outline: none;
-            transition: border-color var(--transition);
-            font-family: 'Inter', sans-serif;
-        }
-        .newsletter input:focus {
-            border-color: var(--glow-color);
-        }
-        .newsletter .btn-glow {
-            padding: 12px 32px;
-            font-size: 0.95rem;
-        }
-        #msgNewsletter {
-            margin-top: 14px;
-            font-weight: 600;
-            min-height: 24px;
-        }
-
         /* ---------- TOAST ---------- */
         .toast {
             position: fixed;
@@ -790,6 +678,7 @@
             margin-bottom: 4px;
             transition: color var(--transition);
             font-size: 0.9rem;
+            cursor: pointer;
         }
         .footer-grid a:hover {
             color: var(--text-primary);
@@ -857,12 +746,6 @@
             }
             .cat-card i {
                 font-size: 1.8rem;
-            }
-            .newsletter {
-                padding: 30px 16px;
-            }
-            .filter-tabs {
-                justify-content: center;
             }
             .toast {
                 bottom: 16px;
@@ -954,35 +837,35 @@
             </div>
 
             <div class="categorias-grid" id="categoriasGrid">
-                <div class="cat-card" data-cat="28">
+                <div class="cat-card" data-cat="acao">
                     <i class="fas fa-gun"></i>
                     <h3>Ação</h3>
                 </div>
-                <div class="cat-card" data-cat="12">
+                <div class="cat-card" data-cat="aventura">
                     <i class="fas fa-hat-wizard"></i>
                     <h3>Aventura</h3>
                 </div>
-                <div class="cat-card" data-cat="16">
+                <div class="cat-card" data-cat="animacao">
                     <i class="fas fa-dragon"></i>
                     <h3>Animação</h3>
                 </div>
-                <div class="cat-card" data-cat="35">
+                <div class="cat-card" data-cat="comedia">
                     <i class="fas fa-laugh"></i>
                     <h3>Comédia</h3>
                 </div>
-                <div class="cat-card" data-cat="18">
+                <div class="cat-card" data-cat="drama">
                     <i class="fas fa-theater-masks"></i>
                     <h3>Drama</h3>
                 </div>
-                <div class="cat-card" data-cat="878">
+                <div class="cat-card" data-cat="ficcao">
                     <i class="fas fa-rocket"></i>
                     <h3>Ficção</h3>
                 </div>
-                <div class="cat-card" data-cat="27">
+                <div class="cat-card" data-cat="terror">
                     <i class="fas fa-skull"></i>
                     <h3>Terror</h3>
                 </div>
-                <div class="cat-card" data-cat="10749">
+                <div class="cat-card" data-cat="romance">
                     <i class="fas fa-heart"></i>
                     <h3>Romance</h3>
                 </div>
@@ -999,37 +882,12 @@
                 <span class="section-count" id="resultCount">0 resultados</span>
             </div>
 
-            <div class="filter-tabs" id="filterTabs">
-                <button class="active" data-filter="all">Todos</button>
-                <button data-filter="movie">Filmes</button>
-                <button data-filter="tv">Séries</button>
-            </div>
-
             <div class="movies-grid" id="moviesGrid"></div>
-
-            <div class="spinner" id="spinner">
-                <i class="fas fa-spinner"></i>
-            </div>
 
             <div style="text-align:center; margin: 10px 0 30px;">
                 <button class="btn-outline" id="loadMoreBtn" style="padding:12px 40px;">
-                    <i class="fas fa-plus"></i> Carregar mais
+                    <i class="fas fa-plus"></i> Carregar mais filmes
                 </button>
-            </div>
-        </section>
-
-        <!-- ========== NEWSLETTER ========== -->
-        <section class="container">
-            <div class="newsletter">
-                <h2>📬 Fique por dentro</h2>
-                <p>Receba recomendações exclusivas e novidades do FLICKTOPIA direto no seu e-mail.</p>
-                <form id="formNewsletter">
-                    <input type="email" id="emailInput" placeholder="Seu melhor e-mail" required />
-                    <button type="submit" class="btn-glow">
-                        <i class="fas fa-paper-plane"></i> Inscrever
-                    </button>
-                </form>
-                <div id="msgNewsletter"></div>
             </div>
         </section>
 
@@ -1065,4 +923,90 @@
                 </div>
                 <div>
                     <h4>Conteúdo</h4>
-                    <a href
+                    <a href="#">Filmes</a>
+                    <a href="#">Séries</a>
+                    <a href="#">Documentários</a>
+                </div>
+                <div>
+                    <h4>Suporte</h4>
+                    <a href="#">FAQ</a>
+                    <a href="#">Privacidade</a>
+                    <a href="#">Termos</a>
+                </div>
+                <div>
+                    <h4>Redes</h4>
+                    <a href="#"><i class="fab fa-instagram"></i> Instagram</a>
+                    <a href="#"><i class="fab fa-twitter"></i> Twitter</a>
+                    <a href="#"><i class="fab fa-youtube"></i> YouTube</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <i class="fas fa-film"></i> FLICKTOPIA &bull; 2026 &bull; Feito com pipoca e café ☕
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================================
+    JAVASCRIPT COMPLETO
+    ============================================================ -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            // ============================================================
+            //  BANCO DE FILMES (EDITÁVEL)
+            //  ============================================================
+            //  ADICIONE SEUS FILMES AQUI!
+            //  Para cada filme, coloque:
+            //  - titulo: Nome do filme
+            //  - ano: Ano de lançamento
+            //  - tipo: 'Filme' ou 'Série'
+            //  - nota: 0 a 5 (use 4.5, 4.8, etc)
+            //  - imagem: URL da imagem (pode ser do Google Imagens)
+            //  - categoria: 'acao', 'aventura', 'animacao', 'comedia', 'drama', 'ficcao', 'terror', 'romance'
+            //  - sinopse: Descrição curta do filme
+            //  - url: LINK DO YOUTUBE para assistir (em alta qualidade!)
+            //  - plataforma: 'YouTube' ou 'Netflix' ou 'Prime Video'
+            // ============================================================
+
+            const filmes = [{
+                id: 1,
+                titulo: 'Interestelar',
+                ano: 2014,
+                tipo: 'Filme',
+                nota: 4.8,
+                imagem: 'https://image.tmdb.org/t/p/w500/gEU2QniE6E77NI6lCU6M1nbklxV.jpg',
+                categoria: 'ficcao',
+                sinopse: 'Um grupo de exploradores viaja por um buraco de minhoca em busca de um novo lar para a humanidade.',
+                url: 'https://www.youtube.com/watch?v=zSWdZVtXT7E',
+                plataforma: 'YouTube'
+            }, {
+                id: 2,
+                titulo: 'Duna: Parte 2',
+                ano: 2024,
+                tipo: 'Filme',
+                nota: 4.9,
+                imagem: 'https://image.tmdb.org/t/p/w500/xOMo8BRKQYwR8jxK3a9KpD5k2z1.jpg',
+                categoria: 'ficcao',
+                sinopse: 'Paul Atreides continua sua jornada em Arrakis, lutando contra seus inimigos e tentando cumprir seu destino.',
+                url: 'https://www.youtube.com/watch?v=8Bk6j5NnFp4',
+                plataforma: 'YouTube'
+            }, {
+                id: 3,
+                titulo: 'Oppenheimer',
+                ano: 2023,
+                tipo: 'Filme',
+                nota: 4.7,
+                imagem: 'https://image.tmdb.org/t/p/w500/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg',
+                categoria: 'drama',
+                sinopse: 'A história do físico J. Robert Oppenheimer e seu papel no desenvolvimento da bomba atômica.',
+                url: 'https://www.youtube.com/watch?v=uYPbbksJxIg',
+                plataforma: 'YouTube'
+            }, {
+                id: 4,
+                titulo: 'The Last of Us',
+                ano: 2023,
+                tipo: 'Série',
+                nota: 4.7,
+                imagem: 'https://image.tmdb.org/t/p/w500/uKvVjHN5kLqZ3s4zGk5kKZ5s5lL.jpg',
+                categoria: 'drama',
+                sinopse: 'Em um mundo pós-ap
